@@ -1,0 +1,174 @@
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
+ext.STRING = 'String'
+ext.BOOLEAN = 'boolean'
+ext.INT = 'int'
+ext.LONG = 'long'
+ext.FLOAT = 'float'
+ext.DOUBLE = 'double'
+ext.BIG_DECIMAL = 'java.math.BigDecimal'
+
+ext.LOGGER_LEVEL = 'software.rsquared.androidlogger.Level'
+ext.VERBOSE = 'software.rsquared.androidlogger.Level.VERBOSE'
+ext.DEBUG = 'software.rsquared.androidlogger.Level.DEBUG'
+ext.INFO = 'software.rsquared.androidlogger.Level.INFO'
+ext.WARNING = 'software.rsquared.androidlogger.Level.WARNING'
+ext.ERROR = 'software.rsquared.androidlogger.Level.ERROR'
+ext.SILENT = 'software.rsquared.androidlogger.Level.SILENT'
+
+ext.TRUE = 'true'
+ext.FALSE = 'false'
+
+ext.JELLY_BEAN_16_4_1 = 16;
+ext.JELLY_BEAN_17_4_2 = 17;
+ext.JELLY_BEAN_18_4_3 = 18;
+ext.KITKAT_19_4_4 = 19;
+ext.LOLLIPOP_21_5_0 = 21;
+ext.LOLLIPOP_22_5_1 = 22;
+ext.MARSHMALLOW_23_6_0 = 23;
+ext.NOUGAT_24_7_0 = 24;
+ext.NOUGAT_25_7_1_1 = 25;
+ext.OREO_26_8_0 = 26;
+ext.OREO_27_8_1 = 27;
+ext.PIE_28_9_0 = 28;
+
+
+def addBuildField(dst, type, name, value) {
+    dst.buildConfigField(type, name, "" + value)
+}
+
+def addBuildField(dst, name, value) {
+    if (value == null) {
+        dst.buildConfigField(STRING, name, "null")
+        return
+    }
+    switch (value.getClass().getSimpleName()) {
+        case "Integer":
+            dst.buildConfigField(INT, name, "" + value)
+            break;
+        case "Long":
+            dst.buildConfigField(LONG, name, "" + value + "l")
+            break;
+        case "Boolean":
+            dst.buildConfigField(BOOLEAN, name, "" + value)
+            break;
+        case "Float":
+            dst.buildConfigField(FLOAT, name, "" + value + "f")
+            break;
+        case "BigDecimal":
+            dst.buildConfigField(BIG_DECIMAL, name, "new java.math.BigDecimal(\"" + value + "\")")
+            break;
+        case "Double":
+            dst.buildConfigField(DOUBLE, name, "" + value)
+            break;
+        case "String":
+        default:
+            if (("" + value).startsWith("software.rsquared.androidlogger.Level")) {
+                dst.buildConfigField(LOGGER_LEVEL, name, "" + value)
+
+            } else {
+                dst.buildConfigField(STRING, name, "\"" + value + "\"")
+            }
+            break;
+    }
+}
+
+def copyApk(apkName) {
+    android.applicationVariants.all { variant ->
+        variant.assemble.doLast {
+            variant.outputs.each { output ->
+                File outputFile = output.outputFile;
+
+                println(outputFile.getAbsolutePath() + " -> " + apkName + " " + outputFile.exists())
+                if (outputFile.exists()) {
+                    try {
+                        File file = new File(outputFile.getParent(), apkName)
+                        copy {
+                            from outputFile.getAbsolutePath()
+                            into file.getParent()
+                            rename { String fileName ->
+                                fileName.replace(fileName, apkName)
+                            }
+                        }
+
+                        logger.error('App: ' + file.getAbsolutePath());
+                    } catch (Exception ignored) {
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+def getCurrentFlavor() {
+    String name = getCurrentFlavorName()
+    if (name.length() > 0) {
+        try {
+            return android.productFlavors.getByName(name);
+        } catch (Exception e) {
+
+        }
+
+    }
+    return null;
+}
+
+def getCurrentFlavorName() {
+    String tskReqStr = getGradle().getStartParameter().getTaskRequests().toString()
+    Pattern pattern;
+    if (tskReqStr.contains("assemble"))
+        pattern = Pattern.compile("assemble(\\w+)(Release|Debug)")
+    else
+        pattern = Pattern.compile("generate(\\w+)(Release|Debug)")
+
+    Matcher matcher = pattern.matcher(tskReqStr)
+
+    if (matcher.find()) {
+        String flavor = matcher.group(1);
+        return flavor.replaceFirst(flavor.substring(0, 1), flavor.substring(0, 1).toLowerCase());
+    } else {
+        return "";
+    }
+}
+
+def getCurrentBuildType() {
+    String name = getCurrentBuildTypeName()
+    if (name.length() > 0) {
+        try {
+            return android.buildTypes.getByName(name);
+        } catch (Exception e) {
+
+        }
+
+    }
+    return null;
+}
+
+def getCurrentBuildTypeName() {
+    String tskReqStr = getGradle().getStartParameter().getTaskRequests().toString()
+    Pattern pattern;
+    if (tskReqStr.contains("assemble"))
+        pattern = Pattern.compile("assemble(\\w+)(Release|Debug)(\\w*)")
+    else
+        pattern = Pattern.compile("generate(\\w+)(Release|Debug)(\\w*)Sources")
+
+    Matcher matcher = pattern.matcher(tskReqStr)
+
+    if (matcher.find()) {
+        String type = matcher.group(2) + matcher.group(3);
+        return type.replaceFirst(type.substring(0, 1), type.substring(0, 1).toLowerCase());
+    } else {
+        return "";
+    }
+}
+
+ext {
+    copyApk = this.&copyApk
+    getCurrentFlavorName = this.&getCurrentFlavorName
+    getCurrentFlavor = this.&getCurrentFlavor
+    getCurrentBuildTypeName = this.&getCurrentBuildTypeName
+    getCurrentBuildType = this.&getCurrentBuildType
+    addBuildField = this.&addBuildField
+}
