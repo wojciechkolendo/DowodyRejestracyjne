@@ -1,11 +1,42 @@
 <resources>
 
-	<!-- Base application theme. -->
-	<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-		<!-- Customize your theme here. -->
+	<style name="Base"/>
+
+	<style name="Base.DowodyRejestracyjne"/>
+
+	<style name="Base.DowodyRejestracyjne.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
 		<item name="colorPrimary">@color/colorPrimary</item>
 		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-		<item name="colorAccent">@color/colorAccent</item>
+		<item name="colorSecondary">@color/colorSecondary</item>
+
+		<item name="android:colorBackground">@color/white</item>
+		<item name="colorControlHighlight">@color/colorRipple</item>
+		<item name="android:windowContentTransitions">true</item>
 	</style>
+
+	<style name="Base.DowodyRejestracyjne.Dialog" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+		<item name="colorPrimary">@color/colorPrimary</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+		<item name="colorSecondary">@color/colorSecondary</item>
+
+		<item name="colorControlHighlight">@color/colorRipple</item>
+		<item name="android:windowSoftInputMode">adjustResize|stateHidden</item>
+	</style>
+
+	<style name="Base.DowodyRejestracyjne.ProgressDialog">
+		<item name="android:windowBackground">@color/transparent</item>
+		<item name="colorPrimary">@color/white</item>
+		<item name="colorPrimaryDark">@color/white</item>
+		<item name="colorAccent">@color/white</item>
+	</style>
+
+	<style name="Theme.DowodyRejestracyjne.Light" parent="Base.DowodyRejestracyjne.Light">
+		<item name="android:statusBarColor">@color/colorPrimaryDark</item>
+	</style>
+
+	<style name="Theme.DowodyRejestracyjne.Dialog" parent="Base.DowodyRejestracyjne.Dialog"/>
+
+	<style name="Theme.DowodyRejestracyjne.ProgressDialog" parent="Base.DowodyRejestracyjne.ProgressDialog"/>
+
 
 </resources>

@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="colorPrimary">#3F51B5</color>
-	<color name="colorPrimaryDark">#303F9F</color>
-	<color name="colorAccent">#FF4081</color>
+
+	<color name="colorPrimary">@color/white</color>
+	<color name="colorPrimaryLight">@color/white</color>
+	<color name="colorPrimaryDark">@color/white</color>
+
+	<color name="colorSecondary">@color/light_blue_400</color>
+	<color name="colorSecondaryLight">@color/light_blue_400</color>
+	<color name="colorSecondaryDark">@color/light_blue_400</color>
+
+	<color name="colorRipple">#4229B6F6</color>
+
+	<color name="possible_result_points">#c0ffbd21</color>
+	<color name="result_view">#b0000000</color>
+	<color name="viewfinder_laser">#ffcc0000</color> <!-- Android standard ICS color -->
+	<color name="viewfinder_mask">#60000000</color>
+
 </resources>
