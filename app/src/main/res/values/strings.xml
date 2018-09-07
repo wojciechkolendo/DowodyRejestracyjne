@@ -1,3 +1,4 @@
 <resources>
 	<string name="app_name">DowodyRejestracyjne</string>
+	<string name="camera_hint">Umieść kod wewnątrz prostokąta, aby zeskanować</string>
 </resources>

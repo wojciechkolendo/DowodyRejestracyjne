@@ -31,7 +31,7 @@
 	</style>
 
 	<style name="Theme.DowodyRejestracyjne.Light" parent="Base.DowodyRejestracyjne.Light">
-		<item name="android:statusBarColor">@color/colorPrimaryDark</item>
+		<item name="android:statusBarColor">@color/black</item>
 	</style>
 
 	<style name="Theme.DowodyRejestracyjne.Dialog" parent="Base.DowodyRejestracyjne.Dialog"/>

@@ -2,8 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	tools:ignore="RtlHardcoded">
 
 	<SurfaceView
 		android:id="@+id/surfaceView"
@@ -27,7 +29,6 @@
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:layout_margin="8dp"
-		android:padding="16dp"
 		app:cardCornerRadius="8dp"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintLeft_toLeftOf="parent"
@@ -36,10 +37,15 @@
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:layout_marginBottom="8dp"
+			android:layout_marginLeft="16dp"
+			android:layout_marginRight="16dp"
+			android:layout_marginTop="8dp"
 			android:drawableLeft="@drawable/all_qr_code"
 			android:drawablePadding="16dp"
 			android:fontFamily="sans-serif-light"
-			android:text="Umieść kod w środku prostokąta, aby zeskanować"
+			android:text="@string/camera_hint"
+			android:textColor="@color/text_light"
 			android:textSize="16sp"/>
 
 	</com.google.android.material.card.MaterialCardView>
