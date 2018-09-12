@@ -24,7 +24,6 @@ import android.os.Message;
 
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.DecodeHintType;
-import com.google.zxing.MultiFormatReader;
 import com.google.zxing.PlanarYUVLuminanceSource;
 import com.google.zxing.ReaderException;
 import com.google.zxing.Result;
@@ -35,17 +34,19 @@ import java.util.Map;
 
 import software.rsquared.androidlogger.Logger;
 import wkolendo.dowodyrejestracyjne.R;
+import wkolendo.dowodyrejestracyjne.utils.decoding.AztecReader;
 import wkolendo.dowodyrejestracyjne.views.activities.CameraActivity;
 
 final class DecodeHandler extends Handler {
 
+	private Map<DecodeHintType,?> hints;
 	private final CameraActivity activity;
-	private final MultiFormatReader multiFormatReader;
+	private final AztecReader aztecReader;
 	private boolean running = true;
 
 	DecodeHandler(CameraActivity activity, Map<DecodeHintType, Object> hints) {
-		multiFormatReader = new MultiFormatReader();
-		multiFormatReader.setHints(hints);
+		aztecReader = new AztecReader();
+		this.hints = hints;
 		this.activity = activity;
 	}
 
@@ -80,11 +81,11 @@ final class DecodeHandler extends Handler {
 		if (source != null) {
 			BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
 			try {
-				rawResult = multiFormatReader.decodeWithState(bitmap);
+				rawResult = aztecReader.decode(bitmap, hints);
 			} catch (ReaderException re) {
 				// continue
 			} finally {
-				multiFormatReader.reset();
+				aztecReader.reset();
 			}
 		}
 

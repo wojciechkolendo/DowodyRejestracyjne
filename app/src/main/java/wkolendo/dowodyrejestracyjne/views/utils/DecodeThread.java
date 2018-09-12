@@ -53,8 +53,6 @@ final class DecodeThread extends Thread {
 
 		hints = new EnumMap<>(DecodeHintType.class);
 
-		hints.put(DecodeHintType.POSSIBLE_FORMATS, EnumSet.of(BarcodeFormat.AZTEC));
-
 		hints.put(DecodeHintType.NEED_RESULT_POINT_CALLBACK, resultPointCallback);
 		Logger.debug("Hints: " + hints);
 	}

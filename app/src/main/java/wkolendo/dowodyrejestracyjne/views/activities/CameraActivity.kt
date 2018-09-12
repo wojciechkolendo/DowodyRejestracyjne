@@ -7,7 +7,9 @@ import android.graphics.Paint
 import android.os.Bundle
 import android.view.SurfaceHolder
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.google.zxing.BarcodeFormat
 import com.google.zxing.Result
 import com.google.zxing.ResultPoint
 import kotlinx.android.synthetic.main.activity_camera.*
@@ -16,6 +18,8 @@ import software.rsquared.permissiontools.OnPermissionResultTask
 import software.rsquared.permissiontools.Permissions
 import wkolendo.dowodyrejestracyjne.R
 import wkolendo.dowodyrejestracyjne.utils.camera.CameraManager
+import wkolendo.dowodyrejestracyjne.utils.decoding.Base64
+import wkolendo.dowodyrejestracyjne.utils.decoding.NRV2EDecompressor
 import wkolendo.dowodyrejestracyjne.views.custom.ViewfinderView
 import wkolendo.dowodyrejestracyjne.views.utils.CaptureActivityHandler
 
@@ -23,6 +27,8 @@ import wkolendo.dowodyrejestracyjne.views.utils.CaptureActivityHandler
  * @author Wojtek Kolendo
  */
 class CameraActivity : DowodyRejestracyjneActivity(), SurfaceHolder.Callback {
+
+	private val RESULT_PREFIX = "\ufeff"
 
 	lateinit var cameraManager: CameraManager
 	var handler: CaptureActivityHandler? = null
@@ -92,7 +98,20 @@ class CameraActivity : DowodyRejestracyjneActivity(), SurfaceHolder.Callback {
 	 * @param barcode   A greyscale bitmap of the camera data which was decoded.
 	 */
 	fun handleDecode(rawResult: Result, barcode: Bitmap, scaleFactor: Float) {
-		Logger.error(rawResult.rawBytes)
+		if (rawResult.barcodeFormat == BarcodeFormat.AZTEC && rawResult.text.startsWith(RESULT_PREFIX)) {
+			try {
+				val debased = Base64.decode(rawResult.text.substring(1))
+				val decompress = NRV2EDecompressor.decompress(debased)
+				val text = String(decompress, Charsets.UTF_8)
+				Logger.error(text)
+				Toast.makeText(this, text, Toast.LENGTH_LONG).show()
+			} catch (e: Exception) {
+				Logger.error(e)
+			}
+		} else {
+			Logger.error(rawResult.barcodeFormat, rawResult.text)
+			Toast.makeText(this, rawResult.text, Toast.LENGTH_LONG).show()
+		}
 	}
 
 	/**
