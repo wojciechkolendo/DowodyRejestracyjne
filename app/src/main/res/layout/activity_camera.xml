@@ -5,7 +5,9 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:ignore="RtlHardcoded">
+	android:fitsSystemWindows="false"
+	tools:background="@color/colorSecondary"
+	tools:ignore="RtlHardcoded,ContentDescription">
 
 	<SurfaceView
 		android:id="@+id/surfaceView"
@@ -25,10 +27,33 @@
 		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintTop_toTopOf="parent"/>
 
+	<ImageView
+		android:id="@+id/closeImageView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="24dp"
+		android:padding="16dp"
+		android:src="@drawable/camera_close_white_24dp"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintTop_toTopOf="parent"/>
+
+	<ImageView
+		android:id="@+id/moreImageView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="24dp"
+		android:padding="16dp"
+		android:src="@drawable/camera_more_white_24dp"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toTopOf="parent"/>
+
 	<com.google.android.material.card.MaterialCardView
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
-		android:layout_margin="8dp"
+		android:layout_marginBottom="56dp"
+		android:layout_marginLeft="8dp"
+		android:layout_marginRight="8dp"
+		android:layout_marginTop="8dp"
 		app:cardCornerRadius="8dp"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintLeft_toLeftOf="parent"
@@ -41,12 +66,12 @@
 			android:layout_marginLeft="16dp"
 			android:layout_marginRight="16dp"
 			android:layout_marginTop="8dp"
-			android:drawableLeft="@drawable/all_qr_code"
+			android:drawableLeft="@drawable/camera_qr_code_secondary_24dp"
 			android:drawablePadding="16dp"
 			android:fontFamily="sans-serif-light"
 			android:text="@string/camera_hint"
 			android:textColor="@color/text_light"
-			android:textSize="16sp"/>
+			android:textSize="17sp"/>
 
 	</com.google.android.material.card.MaterialCardView>
 

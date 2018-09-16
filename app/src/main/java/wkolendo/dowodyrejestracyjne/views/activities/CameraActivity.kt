@@ -1,17 +1,14 @@
 package wkolendo.dowodyrejestracyjne.views.activities
 
 import android.Manifest
+import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Paint
 import android.os.Bundle
 import android.view.SurfaceHolder
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.Result
-import com.google.zxing.ResultPoint
 import kotlinx.android.synthetic.main.activity_camera.*
 import software.rsquared.androidlogger.Logger
 import software.rsquared.permissiontools.OnPermissionResultTask
@@ -32,13 +29,14 @@ class CameraActivity : DowodyRejestracyjneActivity(), SurfaceHolder.Callback {
 
 	lateinit var cameraManager: CameraManager
 	var handler: CaptureActivityHandler? = null
-	private var result: Result? = null
 	private var hasSurface = false
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_camera)
 		window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+		closeImageView.setOnClickListener { onCloseClicked() }
+		moreImageView.setOnClickListener { onMoreClicked() }
 	}
 
 	override fun onResume() {
@@ -114,41 +112,12 @@ class CameraActivity : DowodyRejestracyjneActivity(), SurfaceHolder.Callback {
 		}
 	}
 
-	/**
-	 * Superimpose a line for 1D or dots for 2D to highlight the key features of the barcode.
-	 *
-	 * @param barcode   A bitmap of the captured image.
-	 * @param scaleFactor amount by which thumbnail was scaled
-	 * @param rawResult The decoded results which contains the points to draw.
-	 */
-	private fun drawResultPoints(barcode: Bitmap, scaleFactor: Float, rawResult: Result) {
-		rawResult.resultPoints?.let {
-			if (it.isNotEmpty()) {
-				val canvas = Canvas(barcode)
-				val paint = Paint().apply { color = ContextCompat.getColor(this@CameraActivity, R.color.result_points) }
-				if (it.size == 2) {
-					paint.strokeWidth = 4f
-					drawLine(canvas, paint, it[0], it[1], scaleFactor)
-				} else {
-					paint.strokeWidth = 10f
-					for (resultPoint in it) {
-						if (resultPoint != null) {
-							canvas.drawPoint(scaleFactor * resultPoint.x, scaleFactor * resultPoint.y, paint)
-						}
-					}
-				}
-			}
-		}
+	private fun onCloseClicked() {
+
 	}
 
-	private fun drawLine(canvas: Canvas, paint: Paint, pointA: ResultPoint?, pointB: ResultPoint?, scaleFactor: Float) {
-		if (pointA != null && pointB != null) {
-			canvas.drawLine(scaleFactor * pointA.x,
-					scaleFactor * pointA.y,
-					scaleFactor * pointB.x,
-					scaleFactor * pointB.y,
-					paint)
-		}
+	private fun onMoreClicked() {
+		startActivity(Intent(this, SettingsActivity::class.java))
 	}
 
 	fun drawViewfinder() {

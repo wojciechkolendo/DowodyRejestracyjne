@@ -1,4 +1,13 @@
 <resources>
 	<string name="app_name">DowodyRejestracyjne</string>
+
 	<string name="camera_hint">Umieść kod wewnątrz prostokąta, aby zeskanować</string>
+
+	<string name="settings_about">O aplikacji</string>
+	<string name="settings_app_version">Wersja</string>
+	<string name="settings_app_version_summary" formatted="false" translatable="false">Build: %s</string>
+	<string name="settings_contact">Kontakt</string>
+	<string name="settings_contact_summary">kolendo.wojciech@gmail.com</string>
+	<string name="settings_send_email">Wyślij wiadomość</string>
+	<string name="settings_settings">Ustawienia</string>
 </resources>

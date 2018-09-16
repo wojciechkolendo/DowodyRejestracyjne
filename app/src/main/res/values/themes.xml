@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="Base.DowodyRejestracyjne.Widget"/>
+
+	<style name="ThemeOverlay.DowodyRejestracyjne.Toolbar" parent="ThemeOverlay.MaterialComponents.ActionBar">
+		<item name="colorControlNormal">@color/white</item>
+	</style>
+
+	<style name="ThemeOverlay.DowodyRejestracyjne.TabLayout" parent="ThemeOverlay.MaterialComponents.ActionBar"/>
+
+	<style name="ThemeOverlay.DowodyRejestracyjne.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.ActionBar"/>
+
+	<style name="ThemeOverlay.DowodyRejestracyjne.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light"/>
+
+	<style name="Base.DowodyRejestracyjne.Widget.HeaderLabel">
+		<item name="android:textColor">@color/text_light</item>
+		<item name="android:textSize">14sp</item>
+		<item name="android:gravity">center</item>
+		<item name="android:fontFamily">sans-serif-medium</item>
+	</style>
+
+	<style name="Base.DowodyRejestracyjne.Widget.ContentLabel">
+		<item name="android:textColor">@color/secondary_text_light</item>
+		<item name="android:gravity">center</item>
+	</style>
+
+</resources>
