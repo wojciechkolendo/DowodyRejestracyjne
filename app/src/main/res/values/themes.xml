@@ -20,9 +20,10 @@
 		<item name="android:fontFamily">sans-serif-medium</item>
 	</style>
 
-	<style name="Base.DowodyRejestracyjne.Widget.ContentLabel">
-		<item name="android:textColor">@color/secondary_text_light</item>
-		<item name="android:gravity">center</item>
+	<style name="Base.DowodyRejestracyjne.Widget.TextInputEditText" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+		<item name="android:textColor">@drawable/edit_text_color_selector</item>
+		<item name="android:enabled">false</item>
+		<item name="android:text">@string/result_empty</item>
 	</style>
 
 </resources>

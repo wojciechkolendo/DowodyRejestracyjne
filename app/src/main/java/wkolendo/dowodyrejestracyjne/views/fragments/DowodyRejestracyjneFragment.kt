@@ -3,10 +3,8 @@ package wkolendo.dowodyrejestracyjne.views.fragments
 import android.content.Context
 import androidx.annotation.CallSuper
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
-import wkolendo.dowodyrejestracyjne.R
 import wkolendo.dowodyrejestracyjne.views.activities.DowodyRejestracyjneActivity
 
 /**
@@ -43,18 +41,10 @@ abstract class DowodyRejestracyjneFragment : Fragment() {
 	}
 
 	protected fun showDialogMessage(msg: String, postAction: Runnable?) {
-		AlertDialog.Builder(requireActivity(), R.style.Theme_DowodyRejestracyjne_Dialog)
-				.setCancelable(false)
-				.setMessage(msg)
-				.setPositiveButton(android.R.string.ok, { dialog, which -> postAction?.run() })
-				.show()
+		(activity as DowodyRejestracyjneActivity).showDialogMessage(msg, postAction)
 	}
 
 	protected fun showDialogMessage(@StringRes msg: Int, postAction: Runnable?) {
-		AlertDialog.Builder(requireActivity(), R.style.Theme_DowodyRejestracyjne_Dialog)
-				.setCancelable(false)
-				.setMessage(msg)
-				.setPositiveButton(android.R.string.ok) { dialog, which -> postAction?.run() }
-				.show()
+		(activity as DowodyRejestracyjneActivity).showDialogMessage(msg, postAction)
 	}
 }

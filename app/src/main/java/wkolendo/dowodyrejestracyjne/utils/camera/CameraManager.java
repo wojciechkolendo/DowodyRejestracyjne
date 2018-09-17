@@ -16,10 +16,12 @@
 
 package wkolendo.dowodyrejestracyjne.utils.camera;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.hardware.Camera;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.view.SurfaceHolder;
 
@@ -172,11 +174,18 @@ public final class CameraManager {
 	 * @param handler The handler to send the message to.
 	 * @param message The what field of the message to be sent.
 	 */
+	@SuppressLint("StaticFieldLeak")
 	public synchronized void requestPreviewFrame(Handler handler, int message) {
 		OpenCamera theCamera = camera;
 		if (theCamera != null && previewing) {
 			previewCallback.setHandler(handler, message);
-			theCamera.getCamera().setOneShotPreviewCallback(previewCallback);
+			new AsyncTask<Void, Void, Void>() {
+				@Override
+				protected Void doInBackground(Void... voids) {
+					theCamera.getCamera().setOneShotPreviewCallback(previewCallback);
+					return null;
+				}
+			}.execute();
 		}
 	}
 

@@ -2,12 +2,10 @@ package wkolendo.dowodyrejestracyjne.views.activities
 
 import android.Manifest
 import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.SurfaceHolder
 import android.view.WindowManager
 import android.widget.Toast
-import com.google.zxing.BarcodeFormat
 import com.google.zxing.Result
 import kotlinx.android.synthetic.main.activity_camera.*
 import software.rsquared.androidlogger.Logger
@@ -92,28 +90,29 @@ class CameraActivity : DowodyRejestracyjneActivity(), SurfaceHolder.Callback {
 	 * A valid barcode has been found, so give an indication of success and show the results.
 	 *
 	 * @param rawResult The contents of the barcode.
-	 * @param scaleFactor amount by which thumbnail was scaled
-	 * @param barcode   A greyscale bitmap of the camera data which was decoded.
 	 */
-	fun handleDecode(rawResult: Result, barcode: Bitmap, scaleFactor: Float) {
-		if (rawResult.barcodeFormat == BarcodeFormat.AZTEC && rawResult.text.startsWith(RESULT_PREFIX)) {
-			try {
-				val debased = Base64.decode(rawResult.text.substring(1))
-				val decompress = NRV2EDecompressor.decompress(debased)
-				val text = String(decompress, Charsets.UTF_8)
-				Logger.error(text)
-				Toast.makeText(this, text, Toast.LENGTH_LONG).show()
-			} catch (e: Exception) {
-				Logger.error(e)
-			}
-		} else {
-			Logger.error(rawResult.barcodeFormat, rawResult.text)
-			Toast.makeText(this, rawResult.text, Toast.LENGTH_LONG).show()
+	fun handleDecode(rawResult: Result) {
+//		if (rawResult.barcodeFormat == BarcodeFormat.AZTEC && rawResult.text.startsWith(RESULT_PREFIX)) {
+		try {
+			val debased = Base64.decode(rawResult.text)
+			val decompress = NRV2EDecompressor.decompress(debased)
+			val text = String(decompress, Charsets.UTF_16LE)
+			Logger.error(text)
+
+			startActivity(Intent(this, ResultActivity::class.java).apply {
+				putExtra(ResultActivity.EXTRA_RESULT, text)
+			})
+		} catch (e: Exception) {
+			Logger.error(e)
 		}
+//		} else {
+//			Logger.error(rawResult.barcodeFormat, rawResult.text)
+//			Toast.makeText(this, rawResult.text, Toast.LENGTH_LONG).show()
+//		}
 	}
 
 	private fun onCloseClicked() {
-
+		System.exit(0)
 	}
 
 	private fun onMoreClicked() {

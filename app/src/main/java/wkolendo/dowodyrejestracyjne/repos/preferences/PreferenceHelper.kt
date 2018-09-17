@@ -10,6 +10,7 @@ import wkolendo.dowodyrejestracyjne.DowodyRejestracyjneApplication
  */
 object PreferenceHelper {
 
+	val SETTINGS_CLEAR_HISTORY_KEY = "settings_clear_history"
 	val SETTINGS_CONTACT_KEY = "settings_contact"
 	val SETTINGS_VERSION_KEY = "settings_version"
 

@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:tools="http://schemas.android.com/tools"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:layout_margin="16dp"
+			  android:orientation="vertical"
+			  tools:ignore="RtlHardcoded,DisableBaselineAlignment">
+
+	<com.google.android.material.textfield.TextInputLayout
+		style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<com.google.android.material.textfield.TextInputEditText
+			android:id="@+id/posiadaczDowoduTextView"
+			style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/result_page2_posiadacz_dowodu"/>
+
+	</com.google.android.material.textfield.TextInputLayout>
+
+	<com.google.android.material.textfield.TextInputLayout
+		style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp">
+
+		<com.google.android.material.textfield.TextInputEditText
+			android:id="@+id/wlascicielPojazduTextView"
+			style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/result_page2_wlasciciel_pojazdu"/>
+
+	</com.google.android.material.textfield.TextInputLayout>
+
+	<com.google.android.material.textfield.TextInputLayout
+		style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp">
+
+		<com.google.android.material.textfield.TextInputEditText
+			android:id="@+id/masaF1TextView"
+			style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/result_page2_masa_f1"/>
+
+	</com.google.android.material.textfield.TextInputLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp"
+		android:orientation="horizontal"
+		android:weightSum="2">
+
+		<com.google.android.material.textfield.TextInputLayout
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginRight="6dp"
+			android:layout_weight="1">
+
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/masaF2TextView"
+				style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="@string/result_page2_masa_f2"
+				android:maxLines="1"/>
+
+		</com.google.android.material.textfield.TextInputLayout>
+
+		<com.google.android.material.textfield.TextInputLayout
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="6dp"
+			android:layout_weight="1">
+
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/masaF3TextView"
+				style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="@string/result_page2_masa_f3"
+				android:maxLines="1"/>
+
+		</com.google.android.material.textfield.TextInputLayout>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp"
+		android:orientation="horizontal"
+		android:weightSum="2">
+
+		<com.google.android.material.textfield.TextInputLayout
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginRight="6dp"
+			android:layout_weight="1">
+
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/masaWlasnaTextView"
+				style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="@string/result_page2_masa_wlasna_pojazdu"
+				android:maxLines="1"/>
+
+		</com.google.android.material.textfield.TextInputLayout>
+
+		<com.google.android.material.textfield.TextInputLayout
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="6dp"
+			android:layout_weight="1">
+
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/kategoriaPojazduTextView"
+				style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="@string/result_page2_kategoria_pojazdu"
+				android:maxLines="1"/>
+
+		</com.google.android.material.textfield.TextInputLayout>
+
+	</LinearLayout>
+
+	<com.google.android.material.textfield.TextInputLayout
+		style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp">
+
+		<com.google.android.material.textfield.TextInputEditText
+			android:id="@+id/nrHomologacjiTextView"
+			style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/result_page2_nr_homologacji"/>
+
+	</com.google.android.material.textfield.TextInputLayout>
+
+	<com.google.android.material.textfield.TextInputLayout
+		style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp">
+
+		<com.google.android.material.textfield.TextInputEditText
+			android:id="@+id/liczbaOsiTextView"
+			style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/result_page2_liczba_osi"/>
+
+	</com.google.android.material.textfield.TextInputLayout>
+
+	<com.google.android.material.textfield.TextInputLayout
+		style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp">
+
+		<com.google.android.material.textfield.TextInputEditText
+			android:id="@+id/masaO1TextView"
+			style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/result_page2_masa_o1"/>
+
+	</com.google.android.material.textfield.TextInputLayout>
+
+	<com.google.android.material.textfield.TextInputLayout
+		style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp">
+
+		<com.google.android.material.textfield.TextInputEditText
+			android:id="@+id/masaO2TextView"
+			style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/result_page2_masa_o2"/>
+
+	</com.google.android.material.textfield.TextInputLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp"
+		android:orientation="horizontal"
+		android:weightSum="2">
+
+		<com.google.android.material.textfield.TextInputLayout
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginRight="6dp"
+			android:layout_weight="1">
+
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/pojemnoscSilnikaTextView"
+				style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="@string/result_page2_pojemnosc_silnika"
+				android:maxLines="1"/>
+
+		</com.google.android.material.textfield.TextInputLayout>
+
+		<com.google.android.material.textfield.TextInputLayout
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="6dp"
+			android:layout_weight="1">
+
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/mocSilnikaTextView"
+				style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="@string/result_page2_moc_silnika"
+				android:maxLines="1"/>
+
+		</com.google.android.material.textfield.TextInputLayout>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp"
+		android:orientation="horizontal"
+		android:weightSum="2">
+
+		<com.google.android.material.textfield.TextInputLayout
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginRight="6dp"
+			android:layout_weight="1">
+
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/rodzajPaliwaTextView"
+				style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="@string/result_page2_rodzaj_paliwa"
+				android:maxLines="1"/>
+
+		</com.google.android.material.textfield.TextInputLayout>
+
+		<com.google.android.material.textfield.TextInputLayout
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="6dp"
+			android:layout_weight="1">
+
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/stosunekMocMasaTextView"
+				style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="@string/result_page2_stosunek_moc_masa"
+				android:maxLines="1"/>
+
+		</com.google.android.material.textfield.TextInputLayout>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp"
+		android:orientation="horizontal"
+		android:weightSum="2">
+
+		<com.google.android.material.textfield.TextInputLayout
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginRight="6dp"
+			android:layout_weight="1">
+
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/miejscaSiedzaceTextView"
+				style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="@string/result_page2_m_siedzace"
+				android:maxLines="1"/>
+
+		</com.google.android.material.textfield.TextInputLayout>
+
+		<com.google.android.material.textfield.TextInputLayout
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="6dp"
+			android:layout_weight="1">
+
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/miejscaStojaceTextView"
+				style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="@string/result_page2_m_stojace"
+				android:maxLines="1"/>
+
+		</com.google.android.material.textfield.TextInputLayout>
+
+	</LinearLayout>
+
+</LinearLayout>

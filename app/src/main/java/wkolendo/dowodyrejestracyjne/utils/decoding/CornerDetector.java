@@ -44,7 +44,6 @@ public final class CornerDetector {
 	 * @throws NotFoundException if image is too small to accommodate {@code initSize}
 	 */
 	public CornerDetector(BitMatrix image, int initSize, int x, int y, int targetMatrixSize) throws NotFoundException {
-		Logger.error("CornerDetector() called with: image = [" + image.getHeight(), image.getWidth() + "], initSize = [" + initSize + "], x = [" + x + "], y = [" + y + "], targetMatrixSize = [" + targetMatrixSize + "]");
 		this.image = image;
 		height = image.getHeight();
 		width = image.getWidth();
