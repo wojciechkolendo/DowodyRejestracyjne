@@ -25,15 +25,12 @@ import com.google.zxing.Reader;
 import com.google.zxing.Result;
 import com.google.zxing.ResultMetadataType;
 import com.google.zxing.ResultPoint;
-import com.google.zxing.ResultPointCallback;
 import com.google.zxing.aztec.AztecDetectorResult;
 import com.google.zxing.aztec.decoder.Decoder;
 import com.google.zxing.common.DecoderResult;
 
 import java.util.List;
 import java.util.Map;
-
-import software.rsquared.androidlogger.Logger;
 
 /**
  * This implementation can detect and decode Aztec codes in an image.
@@ -54,20 +51,8 @@ public final class AztecReader implements Reader {
 		return decode(image, null);
 	}
 
-	private void reportFoundResultPoints(Map<DecodeHintType, ?> hints, ResultPoint[] points) {
-		if (hints != null) {
-			ResultPointCallback rpcb = (ResultPointCallback) hints.get(DecodeHintType.NEED_RESULT_POINT_CALLBACK);
-			if (rpcb != null) {
-				for (ResultPoint point : points) {
-					rpcb.foundPossibleResultPoint(point);
-				}
-			}
-		}
-	}
-
 	@Override
-	public Result decode(BinaryBitmap image, Map<DecodeHintType, ?> hints)
-			throws NotFoundException, FormatException {
+	public Result decode(BinaryBitmap image, Map<DecodeHintType, ?> hints) throws NotFoundException, FormatException {
 
 		NotFoundException notFoundException = null;
 		FormatException formatException = null;
@@ -77,7 +62,6 @@ public final class AztecReader implements Reader {
 		try {
 			AztecDetectorResult detectorResult = detector.detect(false);
 			points = detectorResult.getPoints();
-			reportFoundResultPoints(hints, points);
 			decoderResult = new Decoder().decode(detectorResult);
 		} catch (NotFoundException e) {
 			notFoundException = e;
@@ -88,7 +72,6 @@ public final class AztecReader implements Reader {
 			try {
 				AztecDetectorResult detectorResult = detector.detect(true);
 				points = detectorResult.getPoints();
-				reportFoundResultPoints(hints, points);
 				decoderResult = new Decoder().decode(detectorResult);
 			} catch (NotFoundException | FormatException e) {
 				if (notFoundException != null) {

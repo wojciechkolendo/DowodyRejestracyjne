@@ -27,10 +27,12 @@
 
 		<activity
 			android:name=".views.activities.ResultActivity"
+			android:label=""
 			android:screenOrientation="portrait"/>
 
 		<activity
 			android:name=".views.activities.SettingsActivity"
+			android:label=""
 			android:screenOrientation="portrait"/>
 
 	</application>

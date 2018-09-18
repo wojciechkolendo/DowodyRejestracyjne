@@ -1,11 +1,15 @@
 package wkolendo.dowodyrejestracyjne.views.activities
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.view.SurfaceHolder
 import android.view.WindowManager
-import android.widget.Toast
+import com.google.zxing.BarcodeFormat
 import com.google.zxing.Result
 import kotlinx.android.synthetic.main.activity_camera.*
 import software.rsquared.androidlogger.Logger
@@ -22,8 +26,6 @@ import wkolendo.dowodyrejestracyjne.views.utils.CaptureActivityHandler
  * @author Wojtek Kolendo
  */
 class CameraActivity : DowodyRejestracyjneActivity(), SurfaceHolder.Callback {
-
-	private val RESULT_PREFIX = "\ufeff"
 
 	lateinit var cameraManager: CameraManager
 	var handler: CaptureActivityHandler? = null
@@ -62,10 +64,6 @@ class CameraActivity : DowodyRejestracyjneActivity(), SurfaceHolder.Callback {
 		super.onPause()
 	}
 
-	fun getViewfinderView(): ViewfinderView {
-		return viewfinderView
-	}
-
 	override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 		Permissions.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -92,23 +90,32 @@ class CameraActivity : DowodyRejestracyjneActivity(), SurfaceHolder.Callback {
 	 * @param rawResult The contents of the barcode.
 	 */
 	fun handleDecode(rawResult: Result) {
-//		if (rawResult.barcodeFormat == BarcodeFormat.AZTEC && rawResult.text.startsWith(RESULT_PREFIX)) {
-		try {
-			val debased = Base64.decode(rawResult.text)
-			val decompress = NRV2EDecompressor.decompress(debased)
-			val text = String(decompress, Charsets.UTF_16LE)
-			Logger.error(text)
+		if (rawResult.barcodeFormat == BarcodeFormat.AZTEC) {
+			try {
+				val debased = Base64.decode(rawResult.text)
+				val decompress = NRV2EDecompressor.decompress(debased)
+				val text = String(decompress, Charsets.UTF_16LE)
 
-			startActivity(Intent(this, ResultActivity::class.java).apply {
-				putExtra(ResultActivity.EXTRA_RESULT, text)
-			})
-		} catch (e: Exception) {
-			Logger.error(e)
+				Logger.error(rawResult.text, "\n", debased, "\n", decompress)
+
+				vibrate()
+				startActivity(Intent(this, ResultActivity::class.java).apply {
+					putExtra(ResultActivity.EXTRA_RESULT, text)
+				})
+			} catch (e: Exception) {
+				Logger.error(e)
+				showSnackMessage(R.string.camera_error)
+			}
 		}
-//		} else {
-//			Logger.error(rawResult.barcodeFormat, rawResult.text)
-//			Toast.makeText(this, rawResult.text, Toast.LENGTH_LONG).show()
-//		}
+	}
+
+	private fun vibrate() {
+		val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			vibrator.vibrate(VibrationEffect.createOneShot(1000, VibrationEffect.DEFAULT_AMPLITUDE))
+		} else {
+			vibrator.vibrate(1000)
+		}
 	}
 
 	private fun onCloseClicked() {

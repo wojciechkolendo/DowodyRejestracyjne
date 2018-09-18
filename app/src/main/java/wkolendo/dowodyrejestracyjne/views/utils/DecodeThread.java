@@ -19,16 +19,8 @@ package wkolendo.dowodyrejestracyjne.views.utils;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.DecodeHintType;
-import com.google.zxing.ResultPointCallback;
-
-import java.util.EnumMap;
-import java.util.EnumSet;
-import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
-import software.rsquared.androidlogger.Logger;
 import wkolendo.dowodyrejestracyjne.views.activities.CameraActivity;
 
 /**
@@ -39,19 +31,13 @@ import wkolendo.dowodyrejestracyjne.views.activities.CameraActivity;
 final class DecodeThread extends Thread {
 
 	private final CameraActivity activity;
-	private final Map<DecodeHintType, Object> hints;
 	private Handler handler;
 	private final CountDownLatch handlerInitLatch;
 
-	DecodeThread(CameraActivity activity, ResultPointCallback resultPointCallback) {
+	DecodeThread(CameraActivity activity) {
 
 		this.activity = activity;
 		handlerInitLatch = new CountDownLatch(1);
-
-		hints = new EnumMap<>(DecodeHintType.class);
-
-		hints.put(DecodeHintType.NEED_RESULT_POINT_CALLBACK, resultPointCallback);
-		Logger.debug("Hints: " + hints);
 	}
 
 	Handler getHandler() {
@@ -66,7 +52,7 @@ final class DecodeThread extends Thread {
 	@Override
 	public void run() {
 		Looper.prepare();
-		handler = new DecodeHandler(activity, hints);
+		handler = new DecodeHandler(activity);
 		handlerInitLatch.countDown();
 		Looper.loop();
 	}

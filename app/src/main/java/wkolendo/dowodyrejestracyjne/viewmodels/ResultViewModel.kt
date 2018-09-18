@@ -1,8 +1,12 @@
 package wkolendo.dowodyrejestracyjne.viewmodels
 
 import android.text.TextUtils
+import androidx.annotation.StringRes
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import wkolendo.dowodyrejestracyjne.DowodyRejestracyjneApplication
+import wkolendo.dowodyrejestracyjne.R
+import java.lang.StringBuilder
 
 /**
  * @author Wojtek Kolendo
@@ -12,6 +16,7 @@ class ResultViewModel : ViewModel() {
 	val SEPARATOR = '|'
 
 	var result: String? = null
+	var prettyResult: String? = null
 	val decodedFinishedState = MutableLiveData<Boolean>()
 
 	var organWydajacy: String? = null
@@ -126,5 +131,51 @@ class ResultViewModel : ViewModel() {
 		} else {
 			result
 		}
+	}
+
+	fun getPrettyText(): String? {
+		if (prettyResult == null) {
+			val builder = StringBuilder()
+
+			organWydajacy?.let { builder.appendln(getString(R.string.result_page1_organ_wydajacy)).appendln(it).appendln() }
+			numerRejestracyjny?.let { builder.appendln(getString(R.string.result_page1_a)).appendln(it).appendln() }
+			danePojazdu?.let { builder.appendln(getString(R.string.result_page1_d)).appendln(it).appendln() }
+			vin?.let { builder.appendln(getString(R.string.result_page1_e)).appendln(it).appendln() }
+			dataB?.let { builder.appendln(getString(R.string.result_page1_b)).appendln(it).appendln() }
+			dataI?.let { builder.appendln(getString(R.string.result_page1_i)).appendln(it).appendln() }
+			dataH?.let { builder.appendln(getString(R.string.result_page1_h)).appendln(it).appendln() }
+
+			posiadaczDowodu?.let { builder.appendln(getString(R.string.result_page2_posiadacz_dowodu)).appendln(it).appendln() }
+			wlascicielPojazdu?.let { builder.appendln(getString(R.string.result_page2_wlasciciel_pojazdu)).appendln(it).appendln() }
+			masaF1?.let { builder.appendln(getString(R.string.result_page2_masa_f1)).appendln(it).appendln() }
+			masaF2?.let { builder.appendln(getString(R.string.result_page2_masa_f2)).appendln(it).appendln() }
+			masaF3?.let { builder.appendln(getString(R.string.result_page2_masa_f3)).appendln(it).appendln() }
+			masaWlasnaPojazdu?.let { builder.appendln(getString(R.string.result_page2_masa_wlasna_pojazdu)).appendln(it).appendln() }
+			kategoriaPojazdu?.let { builder.appendln(getString(R.string.result_page2_kategoria_pojazdu)).appendln(it).appendln() }
+			nrHomologacji?.let { builder.appendln(getString(R.string.result_page2_nr_homologacji)).appendln(it).appendln() }
+			liczbaOsi?.let { builder.appendln(getString(R.string.result_page2_liczba_osi)).appendln(it).appendln() }
+			masaO1?.let { builder.appendln(getString(R.string.result_page2_masa_o1)).appendln(it).appendln() }
+			masaO2?.let { builder.appendln(getString(R.string.result_page2_masa_o2)).appendln(it).appendln() }
+			pojemnoscSilnika?.let { builder.appendln(getString(R.string.result_page2_pojemnosc_silnika)).appendln(it).appendln() }
+			mocSilnika?.let { builder.appendln(getString(R.string.result_page2_moc_silnika)).appendln(it).appendln() }
+			rodzajPaliwa?.let { builder.appendln(getString(R.string.result_page2_rodzaj_paliwa)).appendln(it).appendln() }
+			stosunekMocy?.let { builder.appendln(getString(R.string.result_page2_stosunek_moc_masa)).appendln(it).appendln() }
+			miejscaSiedzace?.let { builder.appendln(getString(R.string.result_page2_m_siedzace)).appendln(it).appendln() }
+			miejscaStojace?.let { builder.appendln(getString(R.string.result_page2_m_stojace)).appendln(it).appendln() }
+
+			rodzajPojazdu?.let { builder.appendln(getString(R.string.result_page3_rodzaj_pojazdu)).appendln(it).appendln() }
+			przeznaczenie?.let { builder.appendln(getString(R.string.result_page3_przeznaczenie)).appendln(it).appendln() }
+			rokProdukcji?.let { builder.appendln(getString(R.string.result_page3_rok_produkcji)).appendln(it).appendln() }
+			dopuszczalnaLadownosc?.let { builder.appendln(getString(R.string.result_page3_dopuszczalna_ladownosc)).appendln(it).appendln() }
+			naciskOsi?.let { builder.appendln(getString(R.string.result_page3_nacisk_osi)).appendln(it).appendln() }
+			nrKartyPojazdu?.let { builder.appendln(getString(R.string.result_page3_nr_karty_pojazdu)).appendln(it) }
+
+			prettyResult = builder.toString()
+		}
+		return prettyResult
+	}
+
+	private fun getString(@StringRes res: Int): String {
+		return DowodyRejestracyjneApplication.getContext().getString(res)
 	}
 }

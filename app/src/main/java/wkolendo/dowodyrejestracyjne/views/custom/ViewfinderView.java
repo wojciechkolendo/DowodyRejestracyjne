@@ -41,16 +41,9 @@ import wkolendo.dowodyrejestracyjne.utils.camera.CameraManager;
  */
 public final class ViewfinderView extends View {
 
-	private static final int CURRENT_POINT_OPACITY = 0xA0;
-	private static final int MAX_RESULT_POINTS = 20;
-	private static final int POINT_SIZE = 8;
-
 	private CameraManager cameraManager;
 	private final Paint paint;
 	private final int maskColor;
-	private final int resultPointColor;
-	private List<ResultPoint> possibleResultPoints;
-	private List<ResultPoint> lastPossibleResultPoints;
 
 	// This constructor is used when the class is built from an XML resource.
 	public ViewfinderView(Context context, AttributeSet attrs) {
@@ -58,11 +51,7 @@ public final class ViewfinderView extends View {
 
 		// Initialize these once for performance rather than calling them every time in onDraw().
 		paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		Resources resources = getResources();
-		maskColor = resources.getColor(R.color.viewfinder_mask);
-		resultPointColor = resources.getColor(R.color.possible_result_points);
-		possibleResultPoints = new ArrayList<>(5);
-		lastPossibleResultPoints = null;
+		maskColor = getResources().getColor(R.color.viewfinder_mask);
 	}
 
 	public void setCameraManager(CameraManager cameraManager) {
@@ -89,57 +78,9 @@ public final class ViewfinderView extends View {
 		canvas.drawRect(0, frame.top, frame.left, frame.bottom + 1, paint);
 		canvas.drawRect(frame.right + 1, frame.top, width, frame.bottom + 1, paint);
 		canvas.drawRect(0, frame.bottom + 1, width, height, paint);
-
-		float scaleX = frame.width() / (float) previewFrame.width();
-		float scaleY = frame.height() / (float) previewFrame.height();
-
-		List<ResultPoint> currentPossible = possibleResultPoints;
-		List<ResultPoint> currentLast = lastPossibleResultPoints;
-		int frameLeft = frame.left;
-		int frameTop = frame.top;
-		if (currentPossible.isEmpty()) {
-			lastPossibleResultPoints = null;
-		} else {
-			possibleResultPoints = new ArrayList<>(5);
-			lastPossibleResultPoints = currentPossible;
-			paint.setAlpha(CURRENT_POINT_OPACITY);
-			paint.setColor(resultPointColor);
-			synchronized (currentPossible) {
-				for (ResultPoint point : currentPossible) {
-					canvas.drawCircle(frameLeft + (int) (point.getX() * scaleX),
-							frameTop + (int) (point.getY() * scaleY),
-							POINT_SIZE, paint);
-				}
-			}
-		}
-		if (currentLast != null) {
-			paint.setAlpha(CURRENT_POINT_OPACITY / 2);
-			paint.setColor(resultPointColor);
-			synchronized (currentLast) {
-				float radius = POINT_SIZE / 2.0f;
-				for (ResultPoint point : currentLast) {
-					canvas.drawCircle(frameLeft + (int) (point.getX() * scaleX),
-							frameTop + (int) (point.getY() * scaleY),
-							radius, paint);
-				}
-			}
-		}
 	}
 
 	public void drawViewfinder() {
 		invalidate();
 	}
-
-	public void addPossibleResultPoint(ResultPoint point) {
-		List<ResultPoint> points = possibleResultPoints;
-		synchronized (points) {
-			points.add(point);
-			int size = points.size();
-			if (size > MAX_RESULT_POINTS) {
-				// trim it
-				points.subList(0, size - MAX_RESULT_POINTS / 2).clear();
-			}
-		}
-	}
-
 }

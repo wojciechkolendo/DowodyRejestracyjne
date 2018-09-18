@@ -1,9 +1,16 @@
 <resources>
-	<string name="app_name">DowodyRejestracyjne</string>
+	<string name="app_name">Czytnik DR</string>
 
+	<string name="camera_error">Błąd podczas dekodowania kodu</string>
 	<string name="camera_hint">Umieść kod wewnątrz prostokąta, aby zeskanować</string>
 
+	<string name="result_copy">Skopiuj</string>
+	<string name="result_copy_message">Skopiowano do schowka</string>
 	<string name="result_empty" translatable="false">---</string>
+	<string name="result_format_cm3" formatted="true" translatable="false">%s cm³</string>
+	<string name="result_format_kg" formatted="true" translatable="false">%s kg</string>
+	<string name="result_format_kn" formatted="true" translatable="false">%s kN</string>
+	<string name="result_format_kw" formatted="true" translatable="false">%s kW</string>
 	<string name="result_page1_organ_wydajacy">ORGAN WYDAJĄCY</string>
 	<string name="result_page1_a">NUMER REJESTRACYJNY POJAZDU</string>
 	<string name="result_page1_d">DANE POJAZDU</string>
@@ -36,6 +43,8 @@
 	<string name="result_page3_dopuszczalna_ladownosc">DOPUSZCZ. ŁADOWNOŚĆ</string>
 	<string name="result_page3_nacisk_osi">MAX NACISK OSI</string>
 	<string name="result_page3_nr_karty_pojazdu">NR KARTY POJAZDU</string>
+
+	<string name="result_share">Udostępnij</string>
 
 	<string name="settings_about">O aplikacji</string>
 	<string name="settings_app_version">Wersja</string>

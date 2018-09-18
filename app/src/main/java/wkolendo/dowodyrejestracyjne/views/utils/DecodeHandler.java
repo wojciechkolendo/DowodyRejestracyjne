@@ -36,14 +36,12 @@ import wkolendo.dowodyrejestracyjne.views.activities.CameraActivity;
 
 final class DecodeHandler extends Handler {
 
-	private Map<DecodeHintType, ?> hints;
 	private final CameraActivity activity;
 	private final AztecReader aztecReader;
 	private boolean running = true;
 
-	DecodeHandler(CameraActivity activity, Map<DecodeHintType, Object> hints) {
+	DecodeHandler(CameraActivity activity) {
 		aztecReader = new AztecReader();
-		this.hints = hints;
 		this.activity = activity;
 	}
 
@@ -78,7 +76,7 @@ final class DecodeHandler extends Handler {
 		if (source != null) {
 			BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
 			try {
-				rawResult = aztecReader.decode(bitmap, hints);
+				rawResult = aztecReader.decode(bitmap);
 			} catch (ReaderException re) {
 				// continue
 			} finally {

@@ -3,7 +3,7 @@ package wkolendo.dowodyrejestracyjne.views.activities
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.transaction
-import kotlinx.android.synthetic.main.activity_fragment_holder.*
+import kotlinx.android.synthetic.main.activity_result.*
 import wkolendo.dowodyrejestracyjne.R
 import wkolendo.dowodyrejestracyjne.views.fragments.ResultFragment
 
@@ -26,7 +26,7 @@ class ResultActivity : DowodyRejestracyjneActivity() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_fragment_holder)
+		setContentView(R.layout.activity_result)
 
 		if (savedInstanceState == null) {
 			val result: String = intent.getStringExtra(EXTRA_RESULT)
