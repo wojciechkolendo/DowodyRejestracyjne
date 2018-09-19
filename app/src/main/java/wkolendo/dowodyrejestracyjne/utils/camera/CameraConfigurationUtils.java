@@ -305,9 +305,9 @@ public final class CameraConfigurationUtils {
 			int maybeFlippedHeight = isCandidatePortrait ? realWidth : realHeight;
 			double aspectRatio = maybeFlippedWidth / (double) maybeFlippedHeight;
 			double distortion = Math.abs(aspectRatio - screenAspectRatio);
-			if (distortion > MAX_ASPECT_DISTORTION) {
-				continue;
-			}
+//			if (distortion > MAX_ASPECT_DISTORTION) {
+//				continue;
+//			}
 
 			if (maybeFlippedWidth == screenResolution.x && maybeFlippedHeight == screenResolution.y) {
 				Point exactPoint = new Point(realWidth, realHeight);
@@ -315,7 +315,7 @@ public final class CameraConfigurationUtils {
 				return exactPoint;
 			}
 
-			// Resolution is suitable; record the one with max resolution
+			// Resolution is suitable; record the one with max resolutionz
 			if (resolution > maxResolution) {
 				maxResolution = resolution;
 				maxResPreviewSize = size;

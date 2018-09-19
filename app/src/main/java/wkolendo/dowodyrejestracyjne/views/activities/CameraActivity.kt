@@ -19,7 +19,6 @@ import wkolendo.dowodyrejestracyjne.R
 import wkolendo.dowodyrejestracyjne.utils.camera.CameraManager
 import wkolendo.dowodyrejestracyjne.utils.decoding.Base64
 import wkolendo.dowodyrejestracyjne.utils.decoding.NRV2EDecompressor
-import wkolendo.dowodyrejestracyjne.views.custom.ViewfinderView
 import wkolendo.dowodyrejestracyjne.views.utils.CaptureActivityHandler
 
 /**
@@ -95,8 +94,6 @@ class CameraActivity : DowodyRejestracyjneActivity(), SurfaceHolder.Callback {
 				val debased = Base64.decode(rawResult.text)
 				val decompress = NRV2EDecompressor.decompress(debased)
 				val text = String(decompress, Charsets.UTF_16LE)
-
-				Logger.error(rawResult.text, "\n", debased, "\n", decompress)
 
 				vibrate()
 				startActivity(Intent(this, ResultActivity::class.java).apply {
