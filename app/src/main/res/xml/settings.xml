@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<PreferenceCategory android:title="@string/settings_detector">
+	<!--<PreferenceCategory android:title="@string/settings_detector">-->
 
-		<Preference
-			android:enabled="true"
-			android:icon="@drawable/settings_delete_grey_24dp"
-			android:key="settings_clear_history"
-			android:selectable="true"
-			android:summary="@string/settings_clear_history_summary"
-			android:title="@string/settings_clear_history"/>
+		<!--<Preference-->
+			<!--android:enabled="true"-->
+			<!--android:icon="@drawable/settings_delete_grey_24dp"-->
+			<!--android:key="settings_clear_history"-->
+			<!--android:selectable="true"-->
+			<!--android:summary="@string/settings_clear_history_summary"-->
+			<!--android:title="@string/settings_clear_history"/>-->
 
-	</PreferenceCategory>
+	<!--</PreferenceCategory>-->
 
 	<PreferenceCategory android:title="@string/settings_about">
 

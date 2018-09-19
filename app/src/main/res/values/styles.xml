@@ -39,7 +39,7 @@
 	<style name="Theme.DowodyRejestracyjne.ProgressDialog" parent="Base.DowodyRejestracyjne.ProgressDialog"/>
 
 	<style name="Theme.DowodyRejestracyjne.Camera" parent="Base.DowodyRejestracyjne.Light">
-		<item name="android:windowBackground">@color/black</item>
+		<item name="android:windowBackground">@color/colorSecondaryDark</item>
 		<item name="android:windowTranslucentStatus">true</item>
 		<item name="android:statusBarColor">@color/transparent</item>
 		<item name="android:windowTranslucentNavigation">true</item>

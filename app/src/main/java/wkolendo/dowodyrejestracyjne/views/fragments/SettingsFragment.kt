@@ -30,18 +30,18 @@ class SettingsFragment : PreferenceFragmentCompat() {
 	}
 
 	private fun initDetectorSettings() {
-		val clearPreference = preferenceScreen.findPreference(PreferenceHelper.SETTINGS_CLEAR_HISTORY_KEY)
-
-		clearPreference.onPreferenceClickListener = Preference.OnPreferenceClickListener {
-			AlertDialog.Builder(requireContext(), R.style.Theme_DowodyRejestracyjne_Dialog)
-					.setCancelable(false)
-					.setTitle(R.string.settings_clear_history)
-					.setMessage(R.string.settings_clear_history_message)
-					.setPositiveButton(android.R.string.yes) { _, _ -> (activity as DowodyRejestracyjneActivity).showSnackMessage("not imeplemented") }
-					.setNegativeButton(android.R.string.no) { dialog, _ -> dialog.dismiss() }
-					.show()
-			true
-		}
+//		val clearPreference = preferenceScreen.findPreference(PreferenceHelper.SETTINGS_CLEAR_HISTORY_KEY)
+//
+//		clearPreference.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+//			AlertDialog.Builder(requireContext(), R.style.Theme_DowodyRejestracyjne_Dialog)
+//					.setCancelable(false)
+//					.setTitle(R.string.settings_clear_history)
+//					.setMessage(R.string.settings_clear_history_message)
+//					.setPositiveButton(android.R.string.yes) { _, _ -> (activity as DowodyRejestracyjneActivity).showSnackMessage("not imeplemented") }
+//					.setNegativeButton(android.R.string.no) { dialog, _ -> dialog.dismiss() }
+//					.show()
+//			true
+//		}
 	}
 
 	private fun initAboutSettings() {
