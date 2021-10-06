@@ -14,7 +14,6 @@
 
 		<com.google.android.material.textfield.TextInputEditText
 			android:id="@+id/rodzajPojazduTextView"
-			style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:hint="@string/result_page3_rodzaj_pojazdu"/>
@@ -29,7 +28,6 @@
 
 		<com.google.android.material.textfield.TextInputEditText
 			android:id="@+id/przeznaczenieTextView"
-			style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:hint="@string/result_page3_przeznaczenie"/>
@@ -52,7 +50,6 @@
 
 			<com.google.android.material.textfield.TextInputEditText
 				android:id="@+id/rokProdukcjiTextView"
-				style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:hint="@string/result_page3_rok_produkcji"
@@ -69,7 +66,6 @@
 
 			<com.google.android.material.textfield.TextInputEditText
 				android:id="@+id/dopuszczalnaLadownoscTextView"
-				style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:hint="@string/result_page3_dopuszczalna_ladownosc"
@@ -95,7 +91,6 @@
 
 			<com.google.android.material.textfield.TextInputEditText
 				android:id="@+id/naciskOsiTextView"
-				style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:hint="@string/result_page3_nacisk_osi"
@@ -112,7 +107,6 @@
 
 			<com.google.android.material.textfield.TextInputEditText
 				android:id="@+id/nrKartyPojazduTextView"
-				style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:hint="@string/result_page3_nr_karty_pojazdu"

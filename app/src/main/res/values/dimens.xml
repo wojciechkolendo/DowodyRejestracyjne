@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="boxCornerRadius">12dp</dimen>
+    <dimen name="cardCornerRadius">12dp</dimen>
+    <dimen name="dialogCornerRadius">12dp</dimen>
+    <dimen name="buttonCornerRadius">16dp</dimen>
+    <dimen name="itemContentPaddingVertical">12dp</dimen>
+    <dimen name="itemContentPaddingHorizontal">8dp</dimen>
+    <dimen name="dataPreviewTextSize">12sp</dimen>
+</resources>

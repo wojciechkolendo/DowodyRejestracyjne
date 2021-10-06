@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<color name="colorPrimary">@color/white</color>
-	<color name="colorPrimaryLight">@color/white</color>
-	<color name="colorPrimaryDark">@color/grey_200</color>
+	<color name="primary">@color/blue_500</color>
+	<color name="onPrimary">@color/white</color>
+	<color name="secondary">@color/teal_a400</color>
+	<color name="onSecondary">@color/white</color>
+	<color name="ripple">#422196F3</color>
 
-	<color name="colorSecondary">@color/light_blue_400</color>
-	<color name="colorSecondaryLight">@color/light_blue_400</color>
-	<color name="colorSecondaryDark">@color/light_blue_900</color>
+	<color name="textPrimary">#DE000000</color>
+	<color name="textSecondary">#8A000000</color>
 
-	<color name="colorRipple">#4229B6F6</color>
+	<color name="surface">@color/white</color>
+	<color name="onSurface">@color/black</color>
 
-	<color name="possible_result_points">@color/white</color>
-	<color name="viewfinder_mask">#600085c8</color>
-
+	<color name="ic_launcher_background">#E7F0FC</color>
 </resources>

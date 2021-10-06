@@ -12,16 +12,12 @@
 		android:id="@+id/app_bar"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:theme="@style/ThemeOverlay.DowodyRejestracyjne.AppBarOverlay"
 		app:elevation="0dp">
 
 		<androidx.appcompat.widget.Toolbar
 			android:id="@+id/toolbar"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="@color/colorPrimary"
-			android:popupTheme="@style/ThemeOverlay.DowodyRejestracyjne.PopupOverlay"
-			android:theme="@style/ThemeOverlay.DowodyRejestracyjne.Toolbar">
+			android:layout_height="wrap_content">
 
 			<TextView
 				android:id="@+id/titleTextView"

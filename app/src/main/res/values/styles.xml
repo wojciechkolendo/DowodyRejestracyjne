@@ -1,49 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="Base"/>
-
-	<style name="Base.DowodyRejestracyjne"/>
-
-	<style name="Base.DowodyRejestracyjne.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
-		<item name="colorPrimary">@color/colorPrimary</item>
-		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-		<item name="colorSecondary">@color/colorSecondary</item>
-
-		<item name="android:colorBackground">@color/white</item>
-		<item name="colorControlHighlight">@color/colorRipple</item>
-		<item name="android:windowContentTransitions">true</item>
+	<style name="Widget.DR.Toolbar" parent="Widget.Material3.Toolbar.Surface">
+		<item name="android:theme">@style/ThemeOverlay.DR.Toolbar.Surface</item>
 	</style>
 
-	<style name="Base.DowodyRejestracyjne.Dialog" parent="Theme.MaterialComponents.Light.Dialog.Alert">
-		<item name="colorPrimary">@color/colorPrimary</item>
-		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-		<item name="colorSecondary">@color/colorSecondary</item>
-
-		<item name="colorControlHighlight">@color/colorRipple</item>
-		<item name="android:windowSoftInputMode">adjustResize|stateHidden</item>
+	<style name="ThemeOverlay.DR.Toolbar.Surface" parent="ThemeOverlay.Material3.Toolbar.Surface">
+		<item name="colorControlHighlight">@color/ripple</item>
 	</style>
 
-	<style name="Base.DowodyRejestracyjne.ProgressDialog">
-		<item name="android:windowBackground">@color/transparent</item>
-		<item name="colorPrimary">@color/white</item>
-		<item name="colorPrimaryDark">@color/white</item>
-		<item name="colorAccent">@color/white</item>
+	<style name="ThemeOverlay.DR.AlertDialog" parent="ThemeOverlay.Material3.Dialog.Alert">
+		<item name="buttonBarNegativeButtonStyle">@style/Widget.DR.AlertDialog.ButtonStyle.Text</item>
+		<item name="buttonBarPositiveButtonStyle">@style/Widget.DR.AlertDialog.ButtonStyle</item>
+		<item name="buttonBarNeutralButtonStyle">@style/Widget.DR.AlertDialog.ButtonStyle.Text</item>
 	</style>
 
-	<style name="Theme.DowodyRejestracyjne.Light" parent="Base.DowodyRejestracyjne.Light">
-		<item name="android:statusBarColor">@color/black</item>
+	<style name="Widget.DR.AlertDialog.ButtonStyle.Text" parent="Widget.Material3.Button.TextButton.Dialog">
+		<item name="android:layout_marginStart">0dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
 	</style>
 
-	<style name="Theme.DowodyRejestracyjne.Dialog" parent="Base.DowodyRejestracyjne.Dialog"/>
+	<style name="Widget.DR.AlertDialog.ButtonStyle" parent="Widget.Material3.Button.UnelevatedButton">
+		<!--        <item name="cornerRadius">100dp</item>-->
+	</style>
 
-	<style name="Theme.DowodyRejestracyjne.ProgressDialog" parent="Base.DowodyRejestracyjne.ProgressDialog"/>
+	<style name="Widget.DR.TextInputLayout.OutlinedBox" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+		<item name="boxCornerRadiusBottomEnd">@dimen/boxCornerRadius</item>
+		<item name="boxCornerRadiusBottomStart">@dimen/boxCornerRadius</item>
+		<item name="boxCornerRadiusTopEnd">@dimen/boxCornerRadius</item>
+		<item name="boxCornerRadiusTopStart">@dimen/boxCornerRadius</item>
+	</style>
 
-	<style name="Theme.DowodyRejestracyjne.Camera" parent="Base.DowodyRejestracyjne.Light">
-		<item name="android:windowBackground">@color/colorSecondaryDark</item>
-		<item name="android:windowTranslucentStatus">true</item>
-		<item name="android:statusBarColor">@color/transparent</item>
-		<item name="android:windowTranslucentNavigation">true</item>
-		<item name="android:navigationBarColor">@color/transparent</item>
+	<style name="Widget.DR.TextInputLayout.OutlinedBox.Disabled">
+		<item name="android:focusable">false</item>
+		<item name="android:clickable">false</item>
+		<item name="hintAnimationEnabled">false</item>
+	</style>
+
+	<style name="Widget.DR.TextInputLayout.OutlinedBox.Dense" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+		<item name="boxCornerRadiusBottomEnd">@dimen/boxCornerRadius</item>
+		<item name="boxCornerRadiusBottomStart">@dimen/boxCornerRadius</item>
+		<item name="boxCornerRadiusTopEnd">@dimen/boxCornerRadius</item>
+		<item name="boxCornerRadiusTopStart">@dimen/boxCornerRadius</item>
+	</style>
+
+	<style name="Widget.DR.TextInputLayout.OutlinedBox.Dense.Disabled">
+		<item name="android:focusable">false</item>
+		<item name="android:clickable">false</item>
+		<item name="hintAnimationEnabled">false</item>
+	</style>
+
+	<style name="Widget.DR.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+		<item name="boxCornerRadiusBottomEnd">@dimen/boxCornerRadius</item>
+		<item name="boxCornerRadiusBottomStart">@dimen/boxCornerRadius</item>
+		<item name="boxCornerRadiusTopEnd">@dimen/boxCornerRadius</item>
+		<item name="boxCornerRadiusTopStart">@dimen/boxCornerRadius</item>
+	</style>
+
+	<style name="Widget.DR.CardView.Elevated" parent="Widget.Material3.CardView.Elevated">
+		<item name="cardCornerRadius">@dimen/cardCornerRadius</item>
+	</style>
+
+	<style name="Widget.DR.CardView.Outlined" parent="Widget.Material3.CardView.Outlined">
+		<item name="cardCornerRadius">@dimen/cardCornerRadius</item>
+	</style>
+
+	<style name="Widget.DR.OverFlow" parent="@android:style/Widget.Holo.ActionButton.Overflow">
+		<item name="android:src">@drawable/ic_ellipsis_vertical_24dp</item>
+	</style>
+
+	<style name="Widget.DR.Button" parent="Widget.Material3.Button">
+		<!--        <item name="cornerRadius">@dimen/buttonCornerRadius</item>-->
+	</style>
+
+	<style name="Widget.DR.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
+		<item name="strokeColor">?colorSecondary</item>
+		<item name="android:textColor">?colorSecondary</item>
+		<item name="android:insetTop">0dp</item>
+		<item name="android:insetBottom">0dp</item>
+	</style>
+
+	<style name="Widget.DR.Button.UnelevatedButton" parent="Widget.Material3.Button.UnelevatedButton">
+		<!--        <item name="cornerRadius">@dimen/buttonCornerRadius</item>-->
+		<item name="android:insetTop">0dp</item>
+		<item name="android:insetBottom">0dp</item>
+	</style>
+
+	<style name="Widget.DR.RadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton" />
+
+	<style name="Widget.DR.FloatingActionButton" parent="Widget.Material3.FloatingActionButton.Surface" />
+
+	<style name="Widget.DR.ExtendedFloatingActionButton" parent="Widget.Material3.ExtendedFloatingActionButton.Icon.Primary" >
+		<item name="materialThemeOverlay">@style/ThemeOverlay.DR.FloatingActionButton.Primary</item>
+	</style>
+
+	<style name="ThemeOverlay.DR.FloatingActionButton.Primary" parent="">
+		<item name="colorContainer">?attr/colorPrimary</item>
+		<item name="colorOnContainer">?attr/colorOnPrimary</item>
 	</style>
 
 </resources>

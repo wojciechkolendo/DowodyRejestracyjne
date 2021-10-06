@@ -16,7 +16,6 @@
 
 		<com.google.android.material.textfield.TextInputEditText
 			android:id="@+id/organWydajacyTextView"
-			style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:hint="@string/result_page1_organ_wydajacy"/>
@@ -31,7 +30,6 @@
 
 		<com.google.android.material.textfield.TextInputEditText
 			android:id="@+id/numerRejestracyjnyTextView"
-			style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:hint="@string/result_page1_a"/>
@@ -47,7 +45,6 @@
 
 		<com.google.android.material.textfield.TextInputEditText
 			android:id="@+id/danePojazduTextView"
-			style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:hint="@string/result_page1_d"/>
@@ -62,7 +59,6 @@
 
 		<com.google.android.material.textfield.TextInputEditText
 			android:id="@+id/vinTextView"
-			style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:hint="@string/result_page1_e"/>
@@ -77,7 +73,6 @@
 
 		<com.google.android.material.textfield.TextInputEditText
 			android:id="@+id/dataBTextView"
-			style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:hint="@string/result_page1_b"/>
@@ -100,7 +95,6 @@
 
 			<com.google.android.material.textfield.TextInputEditText
 				android:id="@+id/dataITextView"
-				style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:hint="@string/result_page1_i"
@@ -117,7 +111,6 @@
 
 			<com.google.android.material.textfield.TextInputEditText
 				android:id="@+id/dataHTextView"
-				style="@style/Base.DowodyRejestracyjne.Widget.TextInputEditText"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:hint="@string/result_page1_h"

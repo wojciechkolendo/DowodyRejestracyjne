@@ -1,29 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="Base.DowodyRejestracyjne.Widget"/>
+	<style name="Theme.DR" parent="Theme.Material3.DayNight.NoActionBar">
+		<item name="colorPrimary">@color/primary</item>
+		<item name="colorPrimaryVariant">@color/primary</item>
+		<item name="colorOnPrimary">@color/onPrimary</item>
+		<item name="colorSecondary">@color/secondary</item>
+		<item name="colorSecondaryVariant">@color/secondary</item>
+		<item name="colorOnSecondary">@color/onSecondary</item>
+		<item name="colorControlHighlight">@color/ripple</item>
 
-	<style name="ThemeOverlay.DowodyRejestracyjne.Toolbar" parent="ThemeOverlay.MaterialComponents.ActionBar">
-		<item name="colorControlNormal">@color/white</item>
+		<item name="toolbarStyle">@style/Widget.DR.Toolbar</item>
+
+		<item name="alertDialogTheme">@style/ThemeOverlay.DR.AlertDialog</item>
+		<item name="materialAlertDialogTheme">@style/ThemeOverlay.DR.AlertDialog</item>
+		<item name="materialCardViewStyle">@style/Widget.DR.CardView.Elevated</item>
+		<item name="materialButtonStyle">@style/Widget.DR.Button</item>
+		<item name="radioButtonStyle">@style/Widget.DR.RadioButton</item>
+		<item name="textInputStyle">@style/Widget.DR.TextInputLayout.OutlinedBox</item>
+		<item name="floatingActionButtonStyle">@style/Widget.DR.FloatingActionButton</item>
+		<item name="extendedFloatingActionButtonStyle">@style/Widget.DR.ExtendedFloatingActionButton</item>
+
+		<item name="dialogCornerRadius">@dimen/dialogCornerRadius</item>
+		<item name="fontFamily">@font/open_sans</item>
+		<item name="android:actionOverflowButtonStyle">@style/Widget.DR.OverFlow</item>
 	</style>
 
-	<style name="ThemeOverlay.DowodyRejestracyjne.TabLayout" parent="ThemeOverlay.MaterialComponents.ActionBar"/>
-
-	<style name="ThemeOverlay.DowodyRejestracyjne.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.ActionBar"/>
-
-	<style name="ThemeOverlay.DowodyRejestracyjne.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light"/>
-
-	<style name="Base.DowodyRejestracyjne.Widget.HeaderLabel">
-		<item name="android:textColor">@color/text_light</item>
-		<item name="android:textSize">14sp</item>
-		<item name="android:gravity">center</item>
-		<item name="android:fontFamily">sans-serif-medium</item>
-	</style>
-
-	<style name="Base.DowodyRejestracyjne.Widget.TextInputEditText" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
-		<item name="android:textColor">@drawable/edit_text_color_selector</item>
-		<item name="android:enabled">false</item>
-		<item name="android:text">@string/result_empty</item>
+	<style name="Theme.DR.Base">
+		<item name="android:statusBarColor">@color/primary</item>
+		<item name="android:navigationBarColor">@color/primary</item>
 	</style>
 
 </resources>

@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<!--<PreferenceCategory android:title="@string/settings_detector">-->
+    <PreferenceCategory android:title="@string/settings_detector">
 
-		<!--<Preference-->
-			<!--android:enabled="true"-->
-			<!--android:icon="@drawable/settings_delete_grey_24dp"-->
-			<!--android:key="settings_clear_history"-->
-			<!--android:selectable="true"-->
-			<!--android:summary="@string/settings_clear_history_summary"-->
-			<!--android:title="@string/settings_clear_history"/>-->
+        <Preference
+            android:enabled="true"
+            android:icon="@drawable/ic_trash_can_clock_24dp"
+            android:key="settings_clear_history"
+            android:selectable="true"
+            android:summary="@string/settings_clear_history_summary"
+            android:title="@string/settings_clear_history" />
 
-	<!--</PreferenceCategory>-->
+    </PreferenceCategory>
 
-	<PreferenceCategory android:title="@string/settings_about">
+    <PreferenceCategory android:title="@string/settings_about">
 
-		<Preference
-			android:enabled="true"
-			android:icon="@drawable/settings_contact_grey_24dp"
-			android:key="settings_contact"
-			android:selectable="true"
-			android:summary="@string/settings_contact_summary"
-			android:title="@string/settings_contact"/>
+        <Preference
+            android:enabled="true"
+            android:icon="@drawable/ic_envelope_24dp"
+            android:key="settings_contact"
+            android:selectable="true"
+            android:summary="@string/settings_contact_summary"
+            android:title="@string/settings_contact" />
 
-		<Preference
-			android:enabled="true"
-			android:icon="@drawable/settings_info_grey_24dp"
-			android:key="settings_version"
-			android:selectable="true"
-			android:title="@string/settings_app_version"/>
+        <Preference
+            android:enabled="true"
+            android:icon="@drawable/ic_code_24dp"
+            android:key="settings_version"
+            android:selectable="true"
+            android:title="@string/settings_app_version" />
 
-	</PreferenceCategory>
+    </PreferenceCategory>
 
 </PreferenceScreen>
