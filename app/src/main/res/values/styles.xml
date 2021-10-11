@@ -57,6 +57,14 @@
 		<item name="boxCornerRadiusTopStart">@dimen/boxCornerRadius</item>
 	</style>
 
+	<style name="Widget.DR.TextInputEditText.Dense.Disabled" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense">
+		<item name="android:focusable">false</item>
+		<item name="android:clickable">false</item>
+		<item name="android:enabled">false</item>
+		<item name="enabled">false</item>
+		<item name="android:textColor">?colorOnSurface</item>
+	</style>
+
 	<style name="Widget.DR.CardView.Elevated" parent="Widget.Material3.CardView.Elevated">
 		<item name="cardCornerRadius">@dimen/cardCornerRadius</item>
 	</style>

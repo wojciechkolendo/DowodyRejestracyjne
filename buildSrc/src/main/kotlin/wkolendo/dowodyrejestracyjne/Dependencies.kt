@@ -4,6 +4,7 @@ fun DependencyHandler.addAll() {
     addKotlin()
     addLifecycle()
     addAndroidX()
+    addCameraX()
     addGoogle()
     addOthers()
 }
@@ -19,6 +20,7 @@ private fun DependencyHandler.addLifecycle() {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-rc01")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-rc01")
     implementation("androidx.lifecycle:lifecycle-process:2.4.0-rc01")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-rc01")
 }
 
 private fun DependencyHandler.addAndroidX() {
@@ -31,14 +33,19 @@ private fun DependencyHandler.addAndroidX() {
     implementation("androidx.recyclerview:recyclerview:1.2.1")
 }
 
+private fun DependencyHandler.addCameraX() {
+    implementation("androidx.camera:camera-camera2:1.0.1")
+    implementation("androidx.camera:camera-lifecycle:1.0.1")
+    implementation("androidx.camera:camera-view:1.0.0-alpha27")
+}
+
 private fun DependencyHandler.addGoogle() {
     implementation("com.google.android.material:material:1.5.0-alpha04")
+    implementation("com.google.mlkit:barcode-scanning:17.0.0")
 }
 
 private fun DependencyHandler.addOthers() {
     implementation("com.jakewharton.timber:timber:5.0.1")
-    implementation("com.journeyapps:zxing-android-embedded:3.6.0")
-    implementation("com.google.zxing:core:3.3.3")
 }
 
 private fun DependencyHandler.implementation(notation: Any) = add("implementation", notation)
