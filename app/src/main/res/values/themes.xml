@@ -16,8 +16,7 @@
 		<item name="materialCardViewStyle">@style/Widget.DR.CardView.Elevated</item>
 		<item name="materialButtonStyle">@style/Widget.DR.Button</item>
 		<item name="radioButtonStyle">@style/Widget.DR.RadioButton</item>
-		<item name="textInputStyle">@style/Widget.DR.TextInputLayout.OutlinedBox.Dense.Disabled</item>
-		<item name="editTextStyle">@style/Widget.DR.TextInputEditText.Dense.Disabled</item>
+		<item name="textInputStyle">@style/Widget.DR.TextInputLayout.OutlinedBox.Dense.Details</item>
 		<item name="floatingActionButtonStyle">@style/Widget.DR.FloatingActionButton</item>
 		<item name="extendedFloatingActionButtonStyle">@style/Widget.DR.ExtendedFloatingActionButton</item>
 

@@ -4,47 +4,8 @@
 	<string name="camera_error">Błąd podczas dekodowania kodu</string>
 	<string name="camera_hint">Umieść kod wewnątrz prostokąta, aby zeskanować</string>
 
-	<string name="result_copy">Skopiuj</string>
-	<string name="result_copy_message">Skopiowano do schowka</string>
-	<string name="result_empty" translatable="false">---</string>
-	<string name="result_format_cm3" formatted="true" translatable="false">%s cm³</string>
-	<string name="result_format_kg" formatted="true" translatable="false">%s kg</string>
-	<string name="result_format_kn" formatted="true" translatable="false">%s kN</string>
-	<string name="result_format_kw" formatted="true" translatable="false">%s kW</string>
-	<string name="result_page1_organ_wydajacy">ORGAN WYDAJĄCY</string>
-	<string name="result_page1_a">NUMER REJESTRACYJNY POJAZDU</string>
-	<string name="result_page1_d">DANE POJAZDU</string>
-	<string name="result_page1_e">NUMER IDENTYFIKACYJNY (VIN)</string>
-	<string name="result_page1_b">DATA PIERWSZEJ REJESTRACJI</string>
-	<string name="result_page1_i">DATA WYDANIA</string>
-	<string name="result_page1_h">OKRES WAŻNOŚCI</string>
-
-	<string name="result_page2_posiadacz_dowodu">POSIADACZ DOWODU</string>
-	<string name="result_page2_wlasciciel_pojazdu">WŁAŚCICIEL POJAZDU</string>
-	<string name="result_page2_masa_f1">MAX MASA CAŁKOWITA POJAZDU</string>
-	<string name="result_page2_masa_f2">DMC POJAZDU</string>
-	<string name="result_page2_masa_f3">DMC ZESPOŁU POJAZDÓW</string>
-	<string name="result_page2_masa_wlasna_pojazdu">MASA WŁASNA</string>
-	<string name="result_page2_kategoria_pojazdu">KATEGORIA</string>
-	<string name="result_page2_nr_homologacji">NUMER ŚWIADECTWA HOMOLOGACJI</string>
-	<string name="result_page2_liczba_osi">LICZBA OSI</string>
-	<string name="result_page2_masa_o1">MAX MASA PRZYCZEPY Z HAMULCEM</string>
-	<string name="result_page2_masa_o2">MAX MASA PRZYCZEPY BEZ HAMULCA</string>
-	<string name="result_page2_pojemnosc_silnika">POJEMNOŚĆ SILNIKA</string>
-	<string name="result_page2_moc_silnika">MOC SILNIKA</string>
-	<string name="result_page2_rodzaj_paliwa">RODZAJ PALIWA</string>
-	<string name="result_page2_stosunek_moc_masa">STOSUNEK MOC/MASA</string>
-	<string name="result_page2_m_siedzace">M. SIEDZĄCE</string>
-	<string name="result_page2_m_stojace">M. STOJĄCE</string>
-
-	<string name="result_page3_rodzaj_pojazdu">RODZAJ POJAZDU</string>
-	<string name="result_page3_przeznaczenie">PRZEZNACZENIE</string>
-	<string name="result_page3_rok_produkcji">ROK PRODUKCJI</string>
-	<string name="result_page3_dopuszczalna_ladownosc">DOPUSZCZ. ŁADOWNOŚĆ</string>
-	<string name="result_page3_nacisk_osi">MAX NACISK OSI</string>
-	<string name="result_page3_nr_karty_pojazdu">NR KARTY POJAZDU</string>
-
-	<string name="result_share">Udostępnij</string>
+	<string name="details_copy">Skopiuj</string>
+	<string name="details_share">Udostępnij</string>
 
 	<string name="settings_about">O aplikacji</string>
 	<string name="settings_app_version">Wersja</string>

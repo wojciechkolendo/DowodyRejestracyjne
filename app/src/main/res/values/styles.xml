@@ -1,110 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="Widget.DR.Toolbar" parent="Widget.Material3.Toolbar.Surface">
-		<item name="android:theme">@style/ThemeOverlay.DR.Toolbar.Surface</item>
-	</style>
+    <style name="Widget.DR.Toolbar" parent="Widget.Material3.Toolbar.Surface">
+        <item name="android:theme">@style/ThemeOverlay.DR.Toolbar.Surface</item>
+        <item name="navigationIcon">@drawable/ic_chevron_left_24dp</item>
+    </style>
 
-	<style name="ThemeOverlay.DR.Toolbar.Surface" parent="ThemeOverlay.Material3.Toolbar.Surface">
-		<item name="colorControlHighlight">@color/ripple</item>
-	</style>
+    <style name="ThemeOverlay.DR.Toolbar.Surface" parent="ThemeOverlay.Material3.Toolbar.Surface">
+        <item name="colorControlHighlight">@color/ripple</item>
+    </style>
 
-	<style name="ThemeOverlay.DR.AlertDialog" parent="ThemeOverlay.Material3.Dialog.Alert">
-		<item name="buttonBarNegativeButtonStyle">@style/Widget.DR.AlertDialog.ButtonStyle.Text</item>
-		<item name="buttonBarPositiveButtonStyle">@style/Widget.DR.AlertDialog.ButtonStyle</item>
-		<item name="buttonBarNeutralButtonStyle">@style/Widget.DR.AlertDialog.ButtonStyle.Text</item>
-	</style>
+    <style name="ThemeOverlay.DR.AlertDialog" parent="ThemeOverlay.Material3.Dialog.Alert">
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.DR.AlertDialog.ButtonStyle.Text</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.DR.AlertDialog.ButtonStyle</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Widget.DR.AlertDialog.ButtonStyle.Text</item>
+    </style>
 
-	<style name="Widget.DR.AlertDialog.ButtonStyle.Text" parent="Widget.Material3.Button.TextButton.Dialog">
-		<item name="android:layout_marginStart">0dp</item>
-		<item name="android:layout_marginLeft">0dp</item>
-	</style>
+    <style name="Widget.DR.AlertDialog.ButtonStyle.Text" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:layout_marginStart">0dp</item>
+        <item name="android:layout_marginLeft">0dp</item>
+    </style>
 
-	<style name="Widget.DR.AlertDialog.ButtonStyle" parent="Widget.Material3.Button.UnelevatedButton">
-		<!--        <item name="cornerRadius">100dp</item>-->
-	</style>
+    <style name="Widget.DR.AlertDialog.ButtonStyle" parent="Widget.Material3.Button.UnelevatedButton">
+        <!--        <item name="cornerRadius">100dp</item>-->
+    </style>
 
-	<style name="Widget.DR.TextInputLayout.OutlinedBox" parent="Widget.Material3.TextInputLayout.OutlinedBox">
-		<item name="boxCornerRadiusBottomEnd">@dimen/boxCornerRadius</item>
-		<item name="boxCornerRadiusBottomStart">@dimen/boxCornerRadius</item>
-		<item name="boxCornerRadiusTopEnd">@dimen/boxCornerRadius</item>
-		<item name="boxCornerRadiusTopStart">@dimen/boxCornerRadius</item>
-	</style>
+    <style name="Widget.DR.TextInputLayout.OutlinedBox.Dense" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxCornerRadiusBottomEnd">@dimen/boxCornerRadius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/boxCornerRadius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/boxCornerRadius</item>
+        <item name="boxCornerRadiusTopStart">@dimen/boxCornerRadius</item>
+    </style>
 
-	<style name="Widget.DR.TextInputLayout.OutlinedBox.Disabled">
-		<item name="android:focusable">false</item>
-		<item name="android:clickable">false</item>
-		<item name="hintAnimationEnabled">false</item>
-	</style>
+    <style name="Widget.DR.TextInputLayout.OutlinedBox.Dense.Details">
+        <item name="android:focusable">false</item>
+        <item name="android:clickable">false</item>
+        <item name="hintAnimationEnabled">false</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.DR.TextInputEditText.OutlinedBox.Dense.Disabled</item>
+    </style>
 
-	<style name="Widget.DR.TextInputLayout.OutlinedBox.Dense" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
-		<item name="boxCornerRadiusBottomEnd">@dimen/boxCornerRadius</item>
-		<item name="boxCornerRadiusBottomStart">@dimen/boxCornerRadius</item>
-		<item name="boxCornerRadiusTopEnd">@dimen/boxCornerRadius</item>
-		<item name="boxCornerRadiusTopStart">@dimen/boxCornerRadius</item>
-	</style>
+    <style name="ThemeOverlay.DR.TextInputEditText.OutlinedBox.Dense.Disabled" parent="ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense">
+        <item name="editTextStyle">@style/Widget.DR.TextInputEditText.OutlinedBox.Dense</item>
+    </style>
 
-	<style name="Widget.DR.TextInputLayout.OutlinedBox.Dense.Disabled">
-		<item name="android:focusable">false</item>
-		<item name="android:clickable">false</item>
-		<item name="hintAnimationEnabled">false</item>
-	</style>
+    <style name="Widget.DR.TextInputEditText.OutlinedBox.Dense" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense">
+        <item name="android:textAppearance">?attr/textAppearanceBodyLarge</item>
+        <item name="android:focusable">false</item>
+        <item name="android:clickable">false</item>
+        <item name="android:enabled">false</item>
+        <item name="android:textColor">?colorOnSurface</item>
+    </style>
 
-	<style name="Widget.DR.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
-		<item name="boxCornerRadiusBottomEnd">@dimen/boxCornerRadius</item>
-		<item name="boxCornerRadiusBottomStart">@dimen/boxCornerRadius</item>
-		<item name="boxCornerRadiusTopEnd">@dimen/boxCornerRadius</item>
-		<item name="boxCornerRadiusTopStart">@dimen/boxCornerRadius</item>
-	</style>
+    <style name="Widget.DR.CardView.Elevated" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">@dimen/cardCornerRadius</item>
+    </style>
 
-	<style name="Widget.DR.TextInputEditText.Dense.Disabled" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense">
-		<item name="android:focusable">false</item>
-		<item name="android:clickable">false</item>
-		<item name="android:enabled">false</item>
-		<item name="enabled">false</item>
-		<item name="android:textColor">?colorOnSurface</item>
-	</style>
+    <style name="Widget.DR.CardView.Outlined" parent="Widget.Material3.CardView.Outlined">
+        <item name="cardCornerRadius">@dimen/cardCornerRadius</item>
+    </style>
 
-	<style name="Widget.DR.CardView.Elevated" parent="Widget.Material3.CardView.Elevated">
-		<item name="cardCornerRadius">@dimen/cardCornerRadius</item>
-	</style>
+    <style name="Widget.DR.OverFlow" parent="@android:style/Widget.Holo.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_ellipsis_vertical_24dp</item>
+    </style>
 
-	<style name="Widget.DR.CardView.Outlined" parent="Widget.Material3.CardView.Outlined">
-		<item name="cardCornerRadius">@dimen/cardCornerRadius</item>
-	</style>
+    <style name="Widget.DR.Button" parent="Widget.Material3.Button">
+        <!--        <item name="cornerRadius">@dimen/buttonCornerRadius</item>-->
+    </style>
 
-	<style name="Widget.DR.OverFlow" parent="@android:style/Widget.Holo.ActionButton.Overflow">
-		<item name="android:src">@drawable/ic_ellipsis_vertical_24dp</item>
-	</style>
+    <style name="Widget.DR.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="strokeColor">?colorSecondary</item>
+        <item name="android:textColor">?colorSecondary</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
 
-	<style name="Widget.DR.Button" parent="Widget.Material3.Button">
-		<!--        <item name="cornerRadius">@dimen/buttonCornerRadius</item>-->
-	</style>
+    <style name="Widget.DR.Button.UnelevatedButton" parent="Widget.Material3.Button.UnelevatedButton">
+        <!--        <item name="cornerRadius">@dimen/buttonCornerRadius</item>-->
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
 
-	<style name="Widget.DR.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
-		<item name="strokeColor">?colorSecondary</item>
-		<item name="android:textColor">?colorSecondary</item>
-		<item name="android:insetTop">0dp</item>
-		<item name="android:insetBottom">0dp</item>
-	</style>
+    <style name="Widget.DR.RadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton" />
 
-	<style name="Widget.DR.Button.UnelevatedButton" parent="Widget.Material3.Button.UnelevatedButton">
-		<!--        <item name="cornerRadius">@dimen/buttonCornerRadius</item>-->
-		<item name="android:insetTop">0dp</item>
-		<item name="android:insetBottom">0dp</item>
-	</style>
+    <style name="Widget.DR.FloatingActionButton" parent="Widget.Material3.FloatingActionButton.Surface" />
 
-	<style name="Widget.DR.RadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton" />
+    <style name="Widget.DR.ExtendedFloatingActionButton" parent="Widget.Material3.ExtendedFloatingActionButton.Icon.Primary">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.DR.FloatingActionButton.Primary</item>
+    </style>
 
-	<style name="Widget.DR.FloatingActionButton" parent="Widget.Material3.FloatingActionButton.Surface" />
-
-	<style name="Widget.DR.ExtendedFloatingActionButton" parent="Widget.Material3.ExtendedFloatingActionButton.Icon.Primary" >
-		<item name="materialThemeOverlay">@style/ThemeOverlay.DR.FloatingActionButton.Primary</item>
-	</style>
-
-	<style name="ThemeOverlay.DR.FloatingActionButton.Primary" parent="">
-		<item name="colorContainer">?attr/colorPrimary</item>
-		<item name="colorOnContainer">?attr/colorOnPrimary</item>
-	</style>
+    <style name="ThemeOverlay.DR.FloatingActionButton.Primary" parent="">
+        <item name="colorContainer">?attr/colorPrimary</item>
+        <item name="colorOnContainer">?attr/colorOnPrimary</item>
+    </style>
 
 </resources>
