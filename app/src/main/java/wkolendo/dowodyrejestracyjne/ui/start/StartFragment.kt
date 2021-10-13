@@ -10,9 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import wkolendo.dowodyrejestracyjne.R
 import wkolendo.dowodyrejestracyjne.databinding.FragmentStartBinding
@@ -20,10 +18,10 @@ import wkolendo.dowodyrejestracyjne.models.Certificate
 import wkolendo.dowodyrejestracyjne.ui.details.DetailsFragment
 import wkolendo.dowodyrejestracyjne.ui.settings.SettingsFragment
 import wkolendo.dowodyrejestracyjne.ui.start.scan.CameraScannerDialogFragment
-import wkolendo.dowodyrejestracyjne.utils.logError
+import wkolendo.dowodyrejestracyjne.utils.getText
 import wkolendo.dowodyrejestracyjne.utils.showDialogMessage
 import wkolendo.dowodyrejestracyjne.utils.ui.BindingFragment
-import wkolendo.dowodyrejestracyjne.utils.vibrateTap
+import wkolendo.dowodyrejestracyjne.utils.vibrateError
 
 class StartFragment : BindingFragment<FragmentStartBinding>(R.layout.fragment_start) {
 
@@ -33,24 +31,21 @@ class StartFragment : BindingFragment<FragmentStartBinding>(R.layout.fragment_st
 
     override val viewModel: StartViewModel by viewModels()
 
-    override var toolbarTitle = "Czytnik DR"
+    override var toolbarTitle = R.string.app_name.getText()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.settings?.setOnClickListener { openSettingsFragment() }
         binding?.addNew?.setOnClickListener { startNewScan() }
         lifecycleScope.launch { collectFlows() }
-//            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-//                viewModel.newScanEvent.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED).collect {
-//                    logError("collected $it")
-//                }
-//            }
-//        }
     }
 
     private suspend fun collectFlows() {
-        viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-            viewModel.openCertificateFlow.collect { openDetailsFragment(it) }
+        viewModel.eventsFlow.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
+            when (it) {
+                is StartViewModel.Event.OpenDetails -> openDetailsFragment(it.certificate)
+                is StartViewModel.Event.ShowError -> showDialogMessage(it.textRes).also { context?.vibrateError() }
+            }
         }
     }
 
@@ -60,7 +55,7 @@ class StartFragment : BindingFragment<FragmentStartBinding>(R.layout.fragment_st
 
     private fun cameraPermissionCallback(isGranted: Boolean) {
         if (isGranted) openCameraDialog()
-        else showDialogMessage("Uprawnienia kamery są niezbędne do zeskanowania kodu.")
+        else showDialogMessage(R.string.start_camera_permission_message)
 
     }
 

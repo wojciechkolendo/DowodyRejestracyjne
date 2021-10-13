@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import wkolendo.dowodyrejestracyjne.R
 import wkolendo.dowodyrejestracyjne.databinding.FragmentDetailsBinding
 import wkolendo.dowodyrejestracyjne.models.Certificate
+import wkolendo.dowodyrejestracyjne.utils.getText
 import wkolendo.dowodyrejestracyjne.utils.showSnackMessage
 import wkolendo.dowodyrejestracyjne.utils.ui.BindingFragment
 
@@ -52,13 +53,13 @@ class DetailsFragment : BindingFragment<FragmentDetailsBinding>(R.layout.fragmen
 
     private fun copyCertificateData() {
         (activity?.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager)?.setPrimaryClip(
-            ClipData.newPlainText("label", viewModel.certificate.value.toString())
+            ClipData.newPlainText("label", viewModel.buildCertificateString())
         )
-        showSnackMessage("Skopiowano do schowka")
+        showSnackMessage(R.string.details_copy_success_message)
     }
 
     private fun shareCertificateData() = startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).apply {
         type = "text/plain"
-        putExtra(Intent.EXTRA_TEXT, viewModel.certificate.value.toString())
-    }, "Udostępnij"))
+        putExtra(Intent.EXTRA_TEXT, viewModel.buildCertificateString())
+    }, R.string.details_share.getText()))
 }

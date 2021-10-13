@@ -1,6 +1,5 @@
 package wkolendo.dowodyrejestracyjne.ui.settings
 
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -9,6 +8,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import wkolendo.dowodyrejestracyjne.BuildConfig
 import wkolendo.dowodyrejestracyjne.R
+import wkolendo.dowodyrejestracyjne.utils.getText
 import wkolendo.dowodyrejestracyjne.utils.logError
 import wkolendo.dowodyrejestracyjne.utils.ui.BindingActivity
 
@@ -22,7 +22,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         super.onViewCreated(view, savedInstanceState)
         (activity as? BindingActivity<*>)?.supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
-            title = "Ustawienia"
+            title = R.string.settings_settings.getText()
         }
         initAboutSettings()
     }

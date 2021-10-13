@@ -3,7 +3,7 @@ import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.kotlin.dsl.ScriptHandlerScope
 import org.gradle.kotlin.dsl.kotlin
 
-const val GRADLE_PLUGIN_VERSION = "7.0.2"
+const val GRADLE_PLUGIN_VERSION = "7.0.3"
 
 const val KOTLIN_VERSION = "1.5.31"
 

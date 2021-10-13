@@ -6,9 +6,9 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Certificate(
 //    SERIA
-    var series: String?,
+    val series: String?,
 //    ORGAN WYDAJĄCY
-    var issuingAuthority: String?,
+    val issuingAuthority: String?,
 //    A — numer rejestracyjny pojazdu
     val vehicleRegistrationNumber: String?,
 //    B — data pierwszej rejestracji pojazdu
@@ -72,15 +72,15 @@ data class Certificate(
 //    S.2 — liczba miejsc stojących, jeżeli występuje
     val numberOfStandingPlaces: String?,
 //    RODZAJ POJAZDU
-    var type: String?,
+    val vehicleClass: String?,
 //    PRZEZNACZENIE
-    var purpose: String?,
+    val purpose: String?,
 //    ROK PRODUKCJI
-    var yearOfManufacture: String?,
+    val yearOfManufacture: String?,
 //    DOPUSZCZALNA ŁADOWNOŚĆ
-    var maxPermissibleLoad: String?,
+    val maxPermissibleLoad: String?,
 //    NAJWIĘKSZY DOP. NACISK OSI
-    var maxAxlePressure: String?,
+    val maxAxlePressure: String?,
 //    NR KARTY POJAZDU
-    var vehicleCardId: String?,
+    val vehicleCardId: String?,
 ) : Parcelable
