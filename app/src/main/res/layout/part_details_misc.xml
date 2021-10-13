@@ -17,7 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="12dp">
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -28,107 +29,127 @@
             android:paddingBottom="12dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/certificateKeeperName"
+                android:id="@+id/vehicleClass"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/certificate_keeper_name"
+                android:hint="@string/certificate_vehicle_class"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:startIconDrawable="@drawable/ic_user_20dp">
+                app:startIconDrawable="@drawable/ic_circle_info_20dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false"
-                    android:text="@{certificate.certificateKeeperName}"
-                    tools:text="BANKOWY FUNDUSZ LEASINGOWY S.A.O/W-WA" />
+                    android:text="@{certificate.vehicleClass}"
+                    tools:text="SAMOCHÓD OSOBOWY" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/certificateKeeperId"
+                android:id="@+id/purpose"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/certificate_keeper_id"
+                android:hint="@string/certificate_purpose"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/certificateKeeperName">
+                app:layout_constraintTop_toBottomOf="@id/vehicleClass">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{certificate.certificateKeeperId}"
-                    tools:text="47219176700049" />
+                    android:text="@{certificate.purpose}"
+                    tools:text="---" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/certificateKeeperAddress"
+                android:id="@+id/yearOfManufacture"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/certificate_keeper_address"
+                android:hint="@string/certificate_year_of_manufacture"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/certificateKeeperId">
+                app:layout_constraintTop_toBottomOf="@id/purpose">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{certificate.certificateKeeperAddress}"
-                    tools:text="01-192 WARSZAWA\nLESZNO 14" />
+                    android:text="@{certificate.yearOfManufacture}"
+                    tools:text="2009" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/vehicleOwnerName"
+                android:id="@+id/maxPermissibleLoad"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/certificate_owner_name"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="4dp"
+                android:hint="@string/certificate_max_permissible_load"
+                app:layout_constraintEnd_toStartOf="@id/maxAxlePressure"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/certificateKeeperAddress"
-                app:startIconDrawable="@drawable/ic_user_20dp">
+                app:layout_constraintTop_toBottomOf="@id/yearOfManufacture">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{certificate.vehicleOwnerName}"
-                    tools:text="BANKOWY FUNDUSZ LEASINGOWY S.A.O/W-WA" />
+                    android:text="@{@string/format_kilogram(certificate.maxPermissibleLoad)}"
+                    tools:text="---" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/vehicleOwnerId"
+                android:id="@+id/maxAxlePressure"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/certificate_owner_id"
+                android:layout_marginStart="4dp"
+                android:hint="@string/certificate_max_axle_pressure"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/vehicleOwnerName">
+                app:layout_constraintStart_toEndOf="@id/maxPermissibleLoad"
+                app:layout_constraintTop_toTopOf="@id/maxPermissibleLoad">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{certificate.vehicleOwnerId}"
-                    tools:text="47219176700049" />
+                    android:text="@{@string/format_kilonewton(certificate.maxAxlePressure)}"
+                    tools:text="9,95 kN" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/vehicleOwnerAddress"
+                android:id="@+id/vehicleCardId"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/certificate_owner_address"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="4dp"
+                android:hint="@string/certificate_vehicle_card_id"
+                app:layout_constraintEnd_toStartOf="@id/series"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/vehicleOwnerId">
+                app:layout_constraintTop_toBottomOf="@id/maxPermissibleLoad">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{certificate.vehicleOwnerAddress}"
-                    tools:text="01-192 WARSZAWA\nLESZNO 14" />
+                    android:text="@{certificate.vehicleCardId}"
+                    tools:text="AAC1234567" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/series"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:hint="@string/certificate_series"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/vehicleCardId"
+                app:layout_constraintTop_toTopOf="@id/vehicleCardId">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{certificate.series}"
+                    tools:text="BAQ1234567" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

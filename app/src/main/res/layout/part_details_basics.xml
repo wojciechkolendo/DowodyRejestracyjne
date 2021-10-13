@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="12dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 android:id="@+id/issuingAuthority"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Organ wydający"
+                android:hint="@string/certificate_issuing_authority"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -50,7 +50,7 @@
                 android:id="@+id/vehicleRegistrationNumber"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Nr rejestracyjny"
+                android:hint="@string/certificate_vehicle_registration_number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/issuingAuthority"
@@ -68,7 +68,7 @@
                 android:id="@+id/vehicleManufacturer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Marka pojazdu"
+                android:hint="@string/certificate_vehicle_manufacturer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vehicleRegistrationNumber">
@@ -85,7 +85,7 @@
                 android:id="@+id/vehicleType"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Typ pojazdu"
+                android:hint="@string/certificate_vehicle_type"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vehicleManufacturer">
@@ -103,7 +103,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
-                android:hint="Wariant"
+                android:hint="@string/certificate_vehicle_type_variant"
                 app:layout_constraintEnd_toStartOf="@id/vehicleTypeVersion"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vehicleType">
@@ -121,7 +121,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:hint="Wersja"
+                android:hint="@string/certificate_vehicle_type_version"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/vehicleTypeVariant"
                 app:layout_constraintTop_toBottomOf="@id/vehicleType">
@@ -138,7 +138,7 @@
                 android:id="@+id/vehicleModel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Model pojazdu"
+                android:hint="@string/certificate_vehicle_model"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vehicleTypeVariant">
@@ -155,7 +155,7 @@
                 android:id="@+id/vehicleIdentificationNumber"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Nr identyfikacyjny pojazdu (VIN)"
+                android:hint="@string/certificate_vin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vehicleModel">
@@ -172,7 +172,7 @@
                 android:id="@+id/dateOfFirstRegistration"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Data pierwszej rejestracji pojazdu"
+                android:hint="@string/certificate_date_of_first_registration"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vehicleIdentificationNumber"
@@ -191,7 +191,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
-                android:hint="Data wydania"
+                android:hint="@string/certificate_issuing_date"
                 app:layout_constraintEnd_toStartOf="@id/expiryDate"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/dateOfFirstRegistration">
@@ -209,7 +209,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:hint="Okres ważności"
+                android:hint="@string/certificate_expiry_date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/issuingDate"
                 app:layout_constraintTop_toBottomOf="@id/dateOfFirstRegistration">

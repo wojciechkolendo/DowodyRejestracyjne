@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -27,6 +26,14 @@
 
             <include
                 layout="@layout/part_details_owners"
+                app:certificate="@{viewModel.certificate}" />
+
+            <include
+                layout="@layout/part_details_params"
+                app:certificate="@{viewModel.certificate}" />
+
+            <include
+                layout="@layout/part_details_misc"
                 app:certificate="@{viewModel.certificate}" />
 
         </LinearLayout>

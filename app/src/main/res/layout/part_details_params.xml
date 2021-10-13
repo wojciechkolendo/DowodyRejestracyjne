@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="wkolendo.dowodyrejestracyjne.models.Certificate" />
+
+        <variable
+            name="certificate"
+            type="Certificate" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="12dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="12dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="12dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/maxPermissibleWeight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:hint="@string/certificate_max_permissible_weight"
+                app:layout_constraintEnd_toStartOf="@id/maxAuthorisedWeight"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:startIconDrawable="@drawable/ic_weight_hanging_20dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/format_kilogram(certificate.maxPermissibleWeight)}"
+                    tools:text="1810 kg" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/maxAuthorisedWeight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:hint="@string/certificate_max_authorised_weight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/maxPermissibleWeight"
+                app:layout_constraintTop_toTopOf="@id/maxPermissibleWeight">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/format_kilogram(certificate.maxAuthorisedWeight)}"
+                    tools:text="1810 kg" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/maxTrainWeight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:hint="@string/certificate_max_train_weight"
+                app:layout_constraintEnd_toStartOf="@id/vehicleOwnWeight"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/maxPermissibleWeight">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/format_kilogram(certificate.maxTrainWeight)}"
+                    tools:text="3285 kg" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/vehicleOwnWeight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:hint="@string/certificate_vehicle_own_weight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/maxTrainWeight"
+                app:layout_constraintTop_toTopOf="@id/maxTrainWeight">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/format_kilogram(certificate.vehicleOwnWeight)}"
+                    tools:text="1360 kg" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/maxBrakedTrailerMass"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:hint="@string/certificate_max_braked_trailer_weight"
+                app:layout_constraintEnd_toStartOf="@id/maxUnbrakedTrailerMass"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/maxTrainWeight">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/format_kilogram(certificate.maxBrakedTrailerMass)}"
+                    tools:text="1400 kg" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/maxUnbrakedTrailerMass"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:hint="@string/certificate_max_unbraked_trailer_weight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/maxBrakedTrailerMass"
+                app:layout_constraintTop_toTopOf="@id/maxBrakedTrailerMass">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/format_kilogram(certificate.maxUnbrakedTrailerMass)}"
+                    tools:text="695 kg" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/typeApprovalNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/certificate_type_approval_number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/maxBrakedTrailerMass">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{certificate.typeApprovalNumber}"
+                    tools:text="e1*2001/111*1562*15" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/vehicleCategory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:hint="@string/certificate_vehicle_category"
+                app:layout_constraintEnd_toStartOf="@id/numberOfAxles"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/typeApprovalNumber">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{certificate.vehicleCategory}"
+                    tools:text="M1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/numberOfAxles"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:hint="@string/certificate_number_of_axles"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/vehicleCategory"
+                app:layout_constraintTop_toTopOf="@id/vehicleCategory">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{certificate.numberOfAxles}"
+                    tools:text="2" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/cylinderCapacity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:hint="@string/certificate_cylinder_capacity"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vehicleCategory"
+                app:startIconDrawable="@drawable/ic_engine_20dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/format_cubic_meter(certificate.cylinderCapacity)}"
+                    tools:text="1995,00 cm³" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/maxNetPower"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:hint="@string/certificate_max_net_power"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cylinderCapacity">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/format_kilowatt(certificate.maxNetPower)}"
+                    tools:text="125,00 kW" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fuelType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/certificate_fuel_type"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/maxNetPower"
+                app:startIconDrawable="@drawable/ic_gas_pump_20dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    fuelType="@{certificate.fuelType}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Gaz ziemny sprężony (metan)" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/powerWeightRatio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/certificate_power_weight_ratio"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fuelType">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/format_kilowatt_by_kilogram(certificate.powerWeightRatio)}"
+                    tools:text="999,00 kW/kg" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/numberOfSeats"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:hint="@string/certificate_number_of_seats"
+                app:layout_constraintEnd_toStartOf="@id/numberOfStandingPlaces"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/powerWeightRatio">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{certificate.numberOfSeats}"
+                    tools:text="4" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/numberOfStandingPlaces"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:hint="@string/certificate_number_of_standing_places"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/numberOfSeats"
+                app:layout_constraintTop_toTopOf="@id/numberOfSeats">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{certificate.numberOfStandingPlaces}"
+                    tools:text="---" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

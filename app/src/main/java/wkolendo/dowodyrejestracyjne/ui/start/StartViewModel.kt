@@ -1,17 +1,14 @@
 package wkolendo.dowodyrejestracyjne.ui.start
 
 import android.app.Application
-import androidx.lifecycle.LiveData
+import androidx.annotation.StringRes
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.google.mlkit.vision.barcode.Barcode
-import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import wkolendo.dowodyrejestracyjne.R
 import wkolendo.dowodyrejestracyjne.models.Certificate
 import wkolendo.dowodyrejestracyjne.utils.logError
 import wkolendo.dowodyrejestracyjne.utils.scanner.Base64
@@ -20,22 +17,20 @@ import wkolendo.dowodyrejestracyjne.utils.ui.BindingViewModel
 
 class StartViewModel(app: Application, state: SavedStateHandle) : BindingViewModel(app, state), StartView {
 
-    private val openCertificateChannel = Channel<Certificate>(Channel.BUFFERED)
-    val openCertificateFlow = openCertificateChannel.receiveAsFlow()
+    private val eventChannel = Channel<Event>(Channel.BUFFERED)
+    val eventsFlow = eventChannel.receiveAsFlow()
 
     fun onNewScan(barcode: Barcode) {
-        runCatching {
-            val debased = Base64.decode(barcode.rawValue)
-            val decompress = NRV2EDecompressor.decompress(debased)
-            val text = String(decompress, Charsets.UTF_16LE)
-            saveCertificate(text.toCertificate())
-        }.onFailure { logError(it) }
+        runCatching { saveCertificate(String(NRV2EDecompressor.decompress(Base64.decode(barcode.rawValue)), Charsets.UTF_16LE).toCertificate()) }.onFailure {
+            logError(it)
+            viewModelScope.launch { eventChannel.send(Event.ShowError(R.string.camera_scanner_error)) }
+        }
     }
 
     override fun onSaveState() = Unit
 
     private fun saveCertificate(certificate: Certificate) {
-        viewModelScope.launch { openCertificateChannel.send(certificate) }
+        viewModelScope.launch { eventChannel.send(Event.OpenDetails(certificate)) }
     }
 
     private fun String.toCertificate(): Certificate {
@@ -79,12 +74,17 @@ class StartViewModel(app: Application, state: SavedStateHandle) : BindingViewMod
             numberOfSeats = data[52],
             numberOfStandingPlaces = data[53],
 
-            type = data[54],
+            vehicleClass = data[54],
             purpose = data[55],
             yearOfManufacture = data[56],
             maxPermissibleLoad = data[57],
             maxAxlePressure = data[58],
             vehicleCardId = data[59]
         )
+    }
+
+    sealed class Event {
+        data class OpenDetails(val certificate: Certificate) : Event()
+        data class ShowError(@StringRes val textRes: Int) : Event()
     }
 }
