@@ -6,6 +6,7 @@ fun DependencyHandler.addAll() {
     addAndroidX()
     addCameraX()
     addGoogle()
+    addRoom()
     addOthers()
 }
 
@@ -42,6 +43,12 @@ private fun DependencyHandler.addCameraX() {
 private fun DependencyHandler.addGoogle() {
     implementation("com.google.android.material:material:1.5.0-alpha04")
     implementation("com.google.mlkit:barcode-scanning:17.0.0")
+}
+
+private fun DependencyHandler.addRoom() {
+    implementation("androidx.room:room-runtime:2.4.0-beta01")
+    implementation("androidx.room:room-ktx:2.4.0-beta01")
+    kapt("androidx.room:room-compiler:2.4.0-beta01")
 }
 
 private fun DependencyHandler.addOthers() {

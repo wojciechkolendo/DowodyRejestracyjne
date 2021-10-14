@@ -237,7 +237,7 @@
                 app:startIconDrawable="@drawable/ic_gas_pump_20dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    fuelType="@{certificate.fuelType}"
+                    android:text="@{certificate.getFuelTypeName()}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="Gaz ziemny sprężony (metan)" />

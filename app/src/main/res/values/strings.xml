@@ -58,6 +58,18 @@
     <string name="format_kilowatt" formatted="true" translatable="false">%s kW</string>
     <string name="format_kilowatt_by_kilogram" formatted="true" translatable="false">%s kW/kg</string>
 
+    <string name="fuel_type_petrol">Benzyna</string>
+    <string name="fuel_type_diesel">Olej napędowy</string>
+    <string name="fuel_type_mix">Mieszanka (paliwo-olej)</string>
+    <string name="fuel_type_liquefied_petroleum_gas">Gaz płynny (propan-butan)</string>
+    <string name="fuel_type_compressed_natural_gas">Gaz ziemny sprężony (metan)</string>
+    <string name="fuel_type_hydrogen">Wodór</string>
+    <string name="fuel_type_liquefied_natural_gas">Gaz ziemny skroplony (metan)</string>
+    <string name="fuel_type_biodiesel">Biodiesel</string>
+    <string name="fuel_type_ethanol">Etanol</string>
+    <string name="fuel_type_electric_energy">Energia elektryczna</string>
+    <string name="fuel_type_other">Inne</string>
+
     <string name="settings_about">O aplikacji</string>
     <string name="settings_app_version">Wersja</string>
     <string name="settings_app_version_summary" formatted="false" translatable="false">Build: %s</string>

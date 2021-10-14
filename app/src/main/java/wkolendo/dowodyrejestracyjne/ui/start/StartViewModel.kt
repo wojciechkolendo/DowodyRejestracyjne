@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import wkolendo.dowodyrejestracyjne.R
 import wkolendo.dowodyrejestracyjne.models.Certificate
+import wkolendo.dowodyrejestracyjne.repository.CertificateRepository
 import wkolendo.dowodyrejestracyjne.utils.logError
 import wkolendo.dowodyrejestracyjne.utils.scanner.Base64
 import wkolendo.dowodyrejestracyjne.utils.scanner.NRV2EDecompressor
@@ -30,6 +31,7 @@ class StartViewModel(app: Application, state: SavedStateHandle) : BindingViewMod
     override fun onSaveState() = Unit
 
     private fun saveCertificate(certificate: Certificate) {
+        CertificateRepository.insertCertificate(certificate)
         viewModelScope.launch { eventChannel.send(Event.OpenDetails(certificate)) }
     }
 
