@@ -1,10 +1,17 @@
 package wkolendo.dowodyrejestracyjne.models
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
+import wkolendo.dowodyrejestracyjne.R
+import wkolendo.dowodyrejestracyjne.utils.getText
 
 @Parcelize
+@Entity(tableName = "certificates")
 data class Certificate(
+    @PrimaryKey(autoGenerate = true)
+    val databaseId : Int = 0,
 //    SERIA
     val series: String?,
 //    ORGAN WYDAJĄCY
@@ -83,4 +90,20 @@ data class Certificate(
     val maxAxlePressure: String?,
 //    NR KARTY POJAZDU
     val vehicleCardId: String?,
-) : Parcelable
+) : Parcelable {
+
+    fun getFuelTypeName() = when (fuelType?.trim()) {
+        "P" -> R.string.fuel_type_petrol.getText()
+        "D" -> R.string.fuel_type_diesel.getText()
+        "M" -> R.string.fuel_type_mix.getText()
+        "LPG" -> R.string.fuel_type_liquefied_petroleum_gas.getText()
+        "CNG" -> R.string.fuel_type_compressed_natural_gas.getText()
+        "H" -> R.string.fuel_type_hydrogen.getText()
+        "LNG" -> R.string.fuel_type_liquefied_natural_gas.getText()
+        "BD" -> R.string.fuel_type_biodiesel.getText()
+        "E85" -> R.string.fuel_type_ethanol.getText()
+        "EE" -> R.string.fuel_type_electric_energy.getText()
+        "999" -> R.string.fuel_type_other.getText()
+        else -> fuelType
+    }
+}

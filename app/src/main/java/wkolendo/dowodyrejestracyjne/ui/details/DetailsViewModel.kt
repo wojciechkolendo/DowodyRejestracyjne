@@ -49,7 +49,7 @@ class DetailsViewModel(app: Application, state: SavedStateHandle) : BindingViewM
             appendValue(it.numberOfAxles, R.string.certificate_number_of_axles)
             appendValue(it.cylinderCapacity, R.string.certificate_cylinder_capacity)
             appendValue(it.maxNetPower, R.string.certificate_max_net_power)
-            appendValue(it.fuelType, R.string.certificate_fuel_type)
+            appendValue(it.getFuelTypeName(), R.string.certificate_fuel_type)
             appendValue(it.powerWeightRatio, R.string.certificate_power_weight_ratio)
             appendValue(it.numberOfSeats, R.string.certificate_number_of_seats)
             appendValue(it.numberOfStandingPlaces, R.string.certificate_number_of_standing_places)

@@ -20,42 +20,37 @@ package wkolendo.dowodyrejestracyjne.utils.scanner;
  * @author Bartosz Soja
  */
 public class BitReader {
-  private byte[] data;
-  private int dataPosition;
-  private int currentByte;
-  private int bitPosition;
+    private byte[] data;
+    private int dataPosition;
+    private int currentByte;
+    private int bitPosition;
 
-  public BitReader(byte[] data) {
-    this.data = data;
-    dataPosition = 1;
-  }
-
-  public BitReader(byte[] data, int startIdx) {
-    this.data = data;
-    dataPosition = startIdx;
-  }
-
-  public boolean isDataAvailable() {
-    return dataPosition < data.length;
-  }
-
-  public int readBit() {
-    if (!isDataAvailable()) {
-      throw new RuntimeException("No more data available!");
+    public BitReader(byte[] data, int startIdx) {
+        this.data = data;
+        dataPosition = startIdx;
     }
 
-    if (bitPosition == 0) {
-      currentByte = data[dataPosition++] & 0xff;
-      bitPosition = 8;
-    }
-    return ((currentByte >>> --bitPosition) & 1) & 0xff;
-  }
-
-  public int readByte() {
-    if (!isDataAvailable()) {
-      throw new RuntimeException("No more data available!");
+    public boolean isDataAvailable() {
+        return dataPosition < data.length;
     }
 
-    return data[dataPosition++] & 0xff;
-  }
+    public int readBit() {
+        if (!isDataAvailable()) {
+            throw new RuntimeException("No more data available!");
+        }
+
+        if (bitPosition == 0) {
+            currentByte = data[dataPosition++] & 0xff;
+            bitPosition = 8;
+        }
+        return ((currentByte >>> --bitPosition) & 1) & 0xff;
+    }
+
+    public int readByte() {
+        if (!isDataAvailable()) {
+            throw new RuntimeException("No more data available!");
+        }
+
+        return data[dataPosition++] & 0xff;
+    }
 }

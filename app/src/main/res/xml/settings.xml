@@ -3,9 +3,16 @@
 
     <PreferenceCategory android:title="@string/settings_scanner">
 
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:icon="@drawable/ic_floppy_disk_on_surface_24dp"
+            android:key="settings_save_scans"
+            android:selectable="true"
+            android:summary="@string/settings_save_scans_summary"
+            android:title="@string/settings_save_scans" />
+
         <Preference
-            android:enabled="false"
-            android:icon="@drawable/ic_trash_can_clock_surface_24dp"
+            android:icon="@drawable/ic_trash_can_clock_on_surface_24dp"
             android:key="settings_clear_history"
             android:selectable="true"
             android:summary="@string/settings_clear_history_summary"
@@ -16,16 +23,14 @@
     <PreferenceCategory android:title="@string/settings_about">
 
         <Preference
-            android:enabled="true"
-            android:icon="@drawable/ic_envelope_surface_24dp"
+            android:icon="@drawable/ic_envelope_on_surface_24dp"
             android:key="settings_contact"
             android:selectable="true"
             android:summary="@string/settings_contact_summary"
             android:title="@string/settings_contact" />
 
         <Preference
-            android:enabled="true"
-            android:icon="@drawable/ic_code_surface_24dp"
+            android:icon="@drawable/ic_code_on_surface_24dp"
             android:key="settings_version"
             android:selectable="true"
             android:title="@string/settings_app_version" />

@@ -4,21 +4,31 @@ import android.app.Application
 import androidx.annotation.StringRes
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import androidx.preference.PreferenceManager
 import com.google.mlkit.vision.barcode.Barcode
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import wkolendo.dowodyrejestracyjne.R
+import wkolendo.dowodyrejestracyjne.appContext
 import wkolendo.dowodyrejestracyjne.models.Certificate
+import wkolendo.dowodyrejestracyjne.repository.CertificateRepository
+import wkolendo.dowodyrejestracyjne.ui.settings.SETTINGS_SAVE_SCANS
 import wkolendo.dowodyrejestracyjne.utils.logError
 import wkolendo.dowodyrejestracyjne.utils.scanner.Base64
 import wkolendo.dowodyrejestracyjne.utils.scanner.NRV2EDecompressor
 import wkolendo.dowodyrejestracyjne.utils.ui.BindingViewModel
+import wkolendo.dowodyrejestracyjne.utils.ui.OnItemClickListener
+import wkolendo.dowodyrejestracyjne.utils.ui.onItemClickListener
 
 class StartViewModel(app: Application, state: SavedStateHandle) : BindingViewModel(app, state), StartView {
 
     private val eventChannel = Channel<Event>(Channel.BUFFERED)
     val eventsFlow = eventChannel.receiveAsFlow()
+
+    override val certificates: StateFlow<List<Certificate>?> = CertificateRepository.certificates
+    override val onCertificateClick: OnItemClickListener<Certificate> = onItemClickListener(::openCertificate)
 
     fun onNewScan(barcode: Barcode) {
         runCatching { saveCertificate(String(NRV2EDecompressor.decompress(Base64.decode(barcode.rawValue)), Charsets.UTF_16LE).toCertificate()) }.onFailure {
@@ -30,6 +40,13 @@ class StartViewModel(app: Application, state: SavedStateHandle) : BindingViewMod
     override fun onSaveState() = Unit
 
     private fun saveCertificate(certificate: Certificate) {
+        if (PreferenceManager.getDefaultSharedPreferences(appContext)?.getBoolean(SETTINGS_SAVE_SCANS, true) == true) {
+            CertificateRepository.insertCertificate(certificate)
+        }
+        openCertificate(certificate)
+    }
+
+    private fun openCertificate(certificate: Certificate) {
         viewModelScope.launch { eventChannel.send(Event.OpenDetails(certificate)) }
     }
 
@@ -38,7 +55,7 @@ class StartViewModel(app: Application, state: SavedStateHandle) : BindingViewMod
         val data = this.split('|').onEachIndexed { index, s -> logError(index, s) }
         return Certificate(
             series = data[1],
-            issuingAuthority = "${data[3]}\n${data[4]}\n${data[5]}\n${data[6]}",
+            issuingAuthority = data.joinNotEmpty(range = 3..6),
             vehicleRegistrationNumber = data[7],
             vehicleManufacturer = data[8],
             vehicleType = data[9],
@@ -49,13 +66,13 @@ class StartViewModel(app: Application, state: SavedStateHandle) : BindingViewMod
             issuingDate = data[14],
             expiryDate = data[15],
 
-            certificateKeeperName = "${data[16]} ${data[17]} ${data[18]} ${data[19]}",
+            certificateKeeperName = data.joinNotEmpty(range = 16..19),
             certificateKeeperId = data[20],
-            certificateKeeperAddress = "${data[21]} ${data[22]} ${data[23]} ${data[24]} ${data[25]} ${data[26]}",
+            certificateKeeperAddress = data.joinNotEmpty(range = 21..26, appendLine = false),
 
-            vehicleOwnerName = "${data[27]} ${data[28]} ${data[29]} ${data[30]}",
+            vehicleOwnerName = data.joinNotEmpty(range = 27..30),
             vehicleOwnerId = data[31],
-            vehicleOwnerAddress = "${data[32]} ${data[33]} ${data[34]} ${data[35]} ${data[36]} ${data[37]}",
+            vehicleOwnerAddress = data.joinNotEmpty(range = 32..37, appendLine = false),
 
             maxPermissibleWeight = data[38],
             maxAuthorisedWeight = data[39],
@@ -81,6 +98,15 @@ class StartViewModel(app: Application, state: SavedStateHandle) : BindingViewMod
             maxAxlePressure = data[58],
             vehicleCardId = data[59]
         )
+    }
+
+    private fun List<String>.joinNotEmpty(range: IntRange, appendLine: Boolean = true) = buildString {
+        for (i in range) {
+            this@joinNotEmpty[i].takeIf { it.isNotBlank() }?.also {
+                if (appendLine && i != range.first) appendLine()
+                append(it)
+            }
+        }
     }
 
     sealed class Event {
