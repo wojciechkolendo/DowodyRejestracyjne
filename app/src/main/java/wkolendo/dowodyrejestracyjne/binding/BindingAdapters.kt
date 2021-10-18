@@ -1,18 +1,33 @@
 package wkolendo.dowodyrejestracyjne.binding
 
-import android.widget.ImageView
+import android.view.View
 import androidx.databinding.BindingAdapter
-import wkolendo.dowodyrejestracyjne.R
-import wkolendo.dowodyrejestracyjne.utils.getAttrColor
-import wkolendo.dowodyrejestracyjne.utils.stateList
+import androidx.recyclerview.widget.RecyclerView
+import wkolendo.dowodyrejestracyjne.models.Certificate
+import wkolendo.dowodyrejestracyjne.ui.start.StartCertificatesAdapter
+import wkolendo.dowodyrejestracyjne.utils.getOrInstantiateAdapter
+import wkolendo.dowodyrejestracyjne.utils.ui.OnItemClickListener
 
-@BindingAdapter("dayModeSelected")
-fun ImageView.dayModeSelected(selected: Boolean? = null) {
-    if (selected == true) {
-        backgroundTintList = R.attr.colorSecondary.getAttrColor(context).stateList
-        imageTintList = R.attr.colorOnSecondary.getAttrColor(context).stateList
-    } else {
-        backgroundTintList = R.attr.colorSurface.getAttrColor(context).stateList
-        imageTintList = R.attr.colorOnSurface.getAttrColor(context).stateList
-    }
+@BindingAdapter("certificates", "onItemClickListener", requireAll = false)
+fun RecyclerView.certificates(
+    items: List<Certificate>? = null,
+    itemClickListener: OnItemClickListener<Certificate>? = null
+) = getOrInstantiateAdapter<StartCertificatesAdapter>().apply {
+    onItemClickListener = itemClickListener
+    submitList(items)
 }
+
+@BindingAdapter("gone", "invisible", requireAll = false)
+fun View.visibility(gone: Boolean? = null, invisible: Boolean? = null) {
+    when {
+        gone == true -> View.GONE
+        invisible == true -> View.INVISIBLE
+        else -> View.VISIBLE
+    }.takeIf { it != visibility }?.also { visibility = it }
+}
+
+@BindingAdapter("goneIfEmpty")
+fun View.goneIfEmpty(collection: Iterable<Any?>? = null) = visibility(gone = collection?.count() ?: 0 <= 0)
+
+@BindingAdapter("goneIfNotEmpty")
+fun View.goneIfNotEmpty(collection: Iterable<Any?>? = null) = visibility(gone = collection?.count() ?: 0 > 0)

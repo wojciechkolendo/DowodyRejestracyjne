@@ -9,9 +9,9 @@ object App {
 
     const val FLAVOR_DIMENSION = "default"
 
-    const val VERSION = "1.0.1"
+    const val VERSION = "1.0.2"
 
-    const val CODE = 2
+    const val CODE = 3
 
 }
 

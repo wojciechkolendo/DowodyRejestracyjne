@@ -94,4 +94,6 @@
         <item name="colorOnContainer">?attr/colorOnPrimary</item>
     </style>
 
+    <style name="Widget.DR.CompoundButton.Switch" parent="Widget.Material3.CompoundButton.Switch"/>
+
 </resources>

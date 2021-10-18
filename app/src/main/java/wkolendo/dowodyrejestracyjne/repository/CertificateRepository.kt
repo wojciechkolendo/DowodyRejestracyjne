@@ -20,4 +20,8 @@ object CertificateRepository {
     fun insertCertificate(certificate: Certificate) {
         repositoryScope.launch { certificateDao.insert(certificate) }
     }
+
+    fun deleteCertificates() {
+        repositoryScope.launch { certificateDao.deleteAll() }
+    }
 }
