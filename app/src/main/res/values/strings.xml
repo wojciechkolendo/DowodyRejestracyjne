@@ -1,56 +1,56 @@
 <resources>
-    <string name="app_name">Skaner DR</string>
+    <string name="app_name">Scanner DR</string>
 
-    <string name="camera_scanner_error">Błąd podczas dekodowania kodu - nieprawidłowy kod.</string>
-    <string name="camera_scanner_message">Kod musi być dobrze i ostro widoczny z bliskiej odległości</string>
-    <string name="camera_scanner_title">Umieść czytelnie kod</string>
+    <string name="camera_scanner_error">Error while decoding the code - invalid vehicle code.</string>
+    <string name="camera_scanner_message">Code has to be well visible and readable from short distance</string>
+    <string name="camera_scanner_title">Place the code clearly</string>
 
-    <string name="certificate_issuing_authority">Organ wydający</string>
-    <string name="certificate_vehicle_registration_number">Nr rejestracyjny</string>
-    <string name="certificate_vehicle_manufacturer">Marka pojazdu</string>
-    <string name="certificate_vehicle_type">Typ pojazdu</string>
-    <string name="certificate_vehicle_type_variant">Wariant</string>
-    <string name="certificate_vehicle_type_version">Wersja</string>
-    <string name="certificate_vehicle_model">Model pojazdu</string>
-    <string name="certificate_vin">Nr identyfikacyjny pojazdu (VIN)</string>
-    <string name="certificate_date_of_first_registration">Data pierwszej rejestracji pojazdu</string>
-    <string name="certificate_issuing_date">Data wydania</string>
-    <string name="certificate_expiry_date">Okres ważności</string>
+    <string name="certificate_issuing_authority">Issuing authority</string>
+    <string name="certificate_vehicle_registration_number">Plate number</string>
+    <string name="certificate_vehicle_manufacturer">Vehicle manufacturer</string>
+    <string name="certificate_vehicle_type">Vehicle type</string>
+    <string name="certificate_vehicle_type_variant">Vehicle type variant</string>
+    <string name="certificate_vehicle_type_version">Vehicle type version</string>
+    <string name="certificate_vehicle_model">Vehicle model</string>
+    <string name="certificate_vin">Vehicle Identification No. (VIN)</string>
+    <string name="certificate_date_of_first_registration">Date of first registration</string>
+    <string name="certificate_issuing_date">Issuing date</string>
+    <string name="certificate_expiry_date">Expiration date</string>
 
-    <string name="certificate_keeper_name">Posiadacz dowodu rejestracyjnego</string>
-    <string name="certificate_keeper_id">PESEL lub REGON posiadacza dowodu rej.</string>
-    <string name="certificate_keeper_address">Adres posiadacza dowodu rej.</string>
-    <string name="certificate_owner_name">Właściciel pojazdu</string>
-    <string name="certificate_owner_id">PESEL lub REGON właściciela pojazdu</string>
-    <string name="certificate_owner_address">Adres właściciela pojazdu</string>
+    <string name="certificate_keeper_name">Certificate keeper name</string>
+    <string name="certificate_keeper_id">Certificate keeper PESEL or REGON</string>
+    <string name="certificate_keeper_address">Certificate keeper address</string>
+    <string name="certificate_owner_name">Vehicle owner name</string>
+    <string name="certificate_owner_id">Vehicle owner PESEL or REGON</string>
+    <string name="certificate_owner_address">Vehicle owner address</string>
 
-    <string name="certificate_max_permissible_weight">Max masa całkowita</string>
-    <string name="certificate_max_authorised_weight">DMC</string>
-    <string name="certificate_max_train_weight">DMC zespołu pojazdów</string>
-    <string name="certificate_vehicle_own_weight">Masa własna pojazdu</string>
-    <string name="certificate_max_braked_trailer_weight">DMC przycz. z ham.</string>
-    <string name="certificate_max_unbraked_trailer_weight">DMC przycz. bez ham.</string>
-    <string name="certificate_type_approval_number">Nr świadectwa homologacji typu pojazdu</string>
-    <string name="certificate_vehicle_category">Kategoria pojazdu</string>
-    <string name="certificate_number_of_axles">Liczba osi</string>
-    <string name="certificate_cylinder_capacity">Pojemność silnika</string>
-    <string name="certificate_max_net_power">Max moc netto silnika</string>
-    <string name="certificate_fuel_type">Rodzaj paliwa</string>
-    <string name="certificate_power_weight_ratio">Stosunek mocy do masy własnej</string>
-    <string name="certificate_number_of_seats">Miejsca siedzące</string>
-    <string name="certificate_number_of_standing_places">Miejsca stojące</string>
+    <string name="certificate_max_permissible_weight">Max permissible weight</string>
+    <string name="certificate_max_authorised_weight">Max authorised weight</string>
+    <string name="certificate_max_train_weight">Max train weight</string>
+    <string name="certificate_vehicle_own_weight">Vehicle own weight</string>
+    <string name="certificate_max_braked_trailer_weight">Max braked trailer weight</string>
+    <string name="certificate_max_unbraked_trailer_weight">Max unbraked trailer weight</string>
+    <string name="certificate_type_approval_number">Type approval number</string>
+    <string name="certificate_vehicle_category">Vehicle category</string>
+    <string name="certificate_number_of_axles">No. of axles</string>
+    <string name="certificate_cylinder_capacity">Cylinder capacity</string>
+    <string name="certificate_max_net_power">Max engine net power</string>
+    <string name="certificate_fuel_type">Fuel type</string>
+    <string name="certificate_power_weight_ratio">Power/weight ratio</string>
+    <string name="certificate_number_of_seats">No. of seats</string>
+    <string name="certificate_number_of_standing_places">No. of standing places</string>
 
-    <string name="certificate_vehicle_class">Rodzaj pojazdu</string>
-    <string name="certificate_purpose">Przeznaczenie</string>
-    <string name="certificate_year_of_manufacture">Rok produkcji</string>
-    <string name="certificate_max_permissible_load">Dop. ładowność</string>
-    <string name="certificate_max_axle_pressure">Max dop. nacisk osi</string>
-    <string name="certificate_vehicle_card_id">Nr karty pojazdu</string>
-    <string name="certificate_series">Seria dowodu rej.</string>
+    <string name="certificate_vehicle_class">Vehicle class</string>
+    <string name="certificate_purpose">Purpose</string>
+    <string name="certificate_year_of_manufacture">Year of manufacture</string>
+    <string name="certificate_max_permissible_load">Max perm. load</string>
+    <string name="certificate_max_axle_pressure">Max axle pressure</string>
+    <string name="certificate_vehicle_card_id">Vehicle Card id</string>
+    <string name="certificate_series">Certificate series</string>
 
-    <string name="details_copy">Skopiuj</string>
-    <string name="details_copy_success_message">Skopiowano do schowka</string>
-    <string name="details_share">Udostępnij</string>
+    <string name="details_copy">Copy</string>
+    <string name="details_copy_success_message">Certificate copied to clipboard</string>
+    <string name="details_share">Share</string>
 
     <string name="format_cubic_meter" formatted="true" translatable="false">%s cm³</string>
     <string name="format_kilogram" formatted="true" translatable="false">%s kg</string>
@@ -58,34 +58,34 @@
     <string name="format_kilowatt" formatted="true" translatable="false">%s kW</string>
     <string name="format_kilowatt_by_kilogram" formatted="true" translatable="false">%s kW/kg</string>
 
-    <string name="fuel_type_petrol">Benzyna</string>
-    <string name="fuel_type_diesel">Olej napędowy</string>
-    <string name="fuel_type_mix">Mieszanka (paliwo-olej)</string>
-    <string name="fuel_type_liquefied_petroleum_gas">Gaz płynny (propan-butan)</string>
-    <string name="fuel_type_compressed_natural_gas">Gaz ziemny sprężony (metan)</string>
-    <string name="fuel_type_hydrogen">Wodór</string>
-    <string name="fuel_type_liquefied_natural_gas">Gaz ziemny skroplony (metan)</string>
+    <string name="fuel_type_petrol">Petrol</string>
+    <string name="fuel_type_diesel">Diesel</string>
+    <string name="fuel_type_mix">Mix (petrol-oil)</string>
+    <string name="fuel_type_liquefied_petroleum_gas">Liquefied petroleum gas (propane-butane)</string>
+    <string name="fuel_type_compressed_natural_gas">Compressed natural gas (methane)</string>
+    <string name="fuel_type_hydrogen">Hydrogen</string>
+    <string name="fuel_type_liquefied_natural_gas">Liquefied natural gas (methane)</string>
     <string name="fuel_type_biodiesel">Biodiesel</string>
-    <string name="fuel_type_ethanol">Etanol</string>
-    <string name="fuel_type_electric_energy">Energia elektryczna</string>
-    <string name="fuel_type_other">Inne</string>
+    <string name="fuel_type_ethanol">Ethanol</string>
+    <string name="fuel_type_electric_energy">Electric energy</string>
+    <string name="fuel_type_other">Other</string>
 
-    <string name="settings_about">O aplikacji</string>
-    <string name="settings_app_version">Wersja</string>
+    <string name="settings_about">About app</string>
+    <string name="settings_app_version">Version</string>
     <string name="settings_app_version_summary" formatted="false" translatable="false">Build: %s</string>
-    <string name="settings_clear_history">Wyczyść historię</string>
-    <string name="settings_clear_history_confirm">Wyczyść</string>
-    <string name="settings_clear_history_message">Jesteś pewien, że chcesz wyczyścić historię? Tej operacji nie można cofnąć.</string>
-    <string name="settings_clear_history_summary">Wyczyść całą historię zeskanowanych dowodów rejestracyjnych</string>
-    <string name="settings_contact">Kontakt</string>
-    <string name="settings_contact_summary">kolendo.wojciech@gmail.com</string>
-    <string name="settings_save_scans">Zapisywanie kodów</string>
-    <string name="settings_save_scans_summary">Zapisuj skanowane kody w pamięci telefonu</string>
-    <string name="settings_scanner">Skaner</string>
-    <string name="settings_send_email">Wyślij wiadomość</string>
-    <string name="settings_settings">Ustawienia</string>
+    <string name="settings_clear_history">Clear history</string>
+    <string name="settings_clear_history_confirm">Clear</string>
+    <string name="settings_clear_history_message">Are you sure you want to clear all history? This operation cannot be undone.</string>
+    <string name="settings_clear_history_summary">Clear all history of scanned vehicle certificates.</string>
+    <string name="settings_contact">Contact</string>
+    <string name="settings_contact_summary" translatable="false">kolendo.wojciech@gmail.com</string>
+    <string name="settings_save_scans">Save scans</string>
+    <string name="settings_save_scans_summary">Save scanned codes in phone memory.</string>
+    <string name="settings_scanner">Scanner</string>
+    <string name="settings_send_email">Send message</string>
+    <string name="settings_settings">Settings</string>
 
-    <string name="start_empty_certificates_list">Rozpocznij skanowanie\nnowego kodu</string>
-    <string name="start_scan_new">Zeskanuj nowy</string>
-    <string name="start_camera_permission_message">Uprawnienia kamery są niezbędne do zeskanowania kodu.</string>
+    <string name="start_empty_certificates_list">Begin scanning\nnew codes</string>
+    <string name="start_scan_new">Scan new</string>
+    <string name="start_camera_permission_message">Camera permissions are required for scanning the code.</string>
 </resources>

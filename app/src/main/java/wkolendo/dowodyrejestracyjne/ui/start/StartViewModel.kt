@@ -16,8 +16,7 @@ import wkolendo.dowodyrejestracyjne.models.Certificate
 import wkolendo.dowodyrejestracyjne.repository.CertificateRepository
 import wkolendo.dowodyrejestracyjne.ui.settings.SETTINGS_SAVE_SCANS
 import wkolendo.dowodyrejestracyjne.utils.logError
-import wkolendo.dowodyrejestracyjne.utils.scanner.Base64
-import wkolendo.dowodyrejestracyjne.utils.scanner.NRV2EDecompressor
+import wkolendo.dowodyrejestracyjne.utils.scanner.decode
 import wkolendo.dowodyrejestracyjne.utils.ui.BindingViewModel
 import wkolendo.dowodyrejestracyjne.utils.ui.OnItemClickListener
 import wkolendo.dowodyrejestracyjne.utils.ui.onItemClickListener
@@ -31,7 +30,7 @@ class StartViewModel(app: Application, state: SavedStateHandle) : BindingViewMod
     override val onCertificateClick: OnItemClickListener<Certificate> = onItemClickListener(::openCertificate)
 
     fun onNewScan(barcode: Barcode) {
-        runCatching { saveCertificate(String(NRV2EDecompressor.decompress(Base64.decode(barcode.rawValue)), Charsets.UTF_16LE).toCertificate()) }.onFailure {
+        runCatching { saveCertificate(barcode.decode().toCertificate()) }.onFailure {
             logError(it)
             viewModelScope.launch { eventChannel.send(Event.ShowError(R.string.camera_scanner_error)) }
         }
@@ -50,10 +49,8 @@ class StartViewModel(app: Application, state: SavedStateHandle) : BindingViewMod
         viewModelScope.launch { eventChannel.send(Event.OpenDetails(certificate)) }
     }
 
-    private fun String.toCertificate(): Certificate {
-        logError(this)
-        val data = this.split('|').onEachIndexed { index, s -> logError(index, s) }
-        return Certificate(
+    private fun String.toCertificate(): Certificate = split('|').let { data ->
+        Certificate(
             series = data[1],
             issuingAuthority = data.joinNotEmpty(range = 3..6),
             vehicleRegistrationNumber = data[7],
