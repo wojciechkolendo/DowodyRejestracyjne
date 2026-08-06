@@ -1,43 +1,85 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-	id("com.android.application")
-	kotlin("android")
-	kotlin("kapt")
-	kotlin("android.extensions")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.ksp)
 }
+
+val appVersionCode = 3
+val appVersionName = "1.1.0"
 
 android {
-	compileSdk = App.COMPILE_SDK
-	defaultConfig {
-		applicationId = App.ID
-		minSdk = App.MIN_SDK
-		targetSdk = App.TARGET_SDK
-		versionCode = App.CODE
-		versionName = App.VERSION
-		flavorDimensions.add(App.FLAVOR_DIMENSION)
-	}
+    namespace = "wkolendo.dowodyrejestracyjne"
+    compileSdk = 37
 
-	buildFeatures.dataBinding = true
+    defaultConfig {
+        applicationId = "wkolendo.dowodyrejestracyjne"
+        minSdk = 26
+        targetSdk = 37
+        versionCode = appVersionCode
+        versionName = appVersionName
+    }
 
-	compileOptions {
-		sourceCompatibility = JavaVersion.VERSION_1_8
-		targetCompatibility = JavaVersion.VERSION_1_8
-	}
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+    }
 
-	kotlinOptions {
-		jvmTarget = JavaVersion.VERSION_1_8.toString()
-		freeCompilerArgs = listOf(
-				"-Xopt-in=kotlin.contracts.ExperimentalContracts",
-				"-Xopt-in=kotlinx.coroutines.ObsoleteCoroutinesApi",
-				"-Xopt-in=kotlin.ExperimentalStdlibApi",
-				"-Xopt-in=kotlin.experimental.ExperimentalTypeInference"
-		)
-	}
+    buildFeatures {
+        dataBinding = true
+        buildConfig = true
+    }
 
-	applicationVariants.all {
-		outputs.map { it as com.android.build.gradle.internal.api.BaseVariantOutputImpl }.forEach { it.outputFileName = it.outputFileName.setupName() }
-	}
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
 }
 
-androidExtensions.isExperimental = true
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_21
+        optIn.addAll(
+            "kotlin.contracts.ExperimentalContracts",
+            "kotlinx.coroutines.ObsoleteCoroutinesApi",
+            "kotlin.ExperimentalStdlibApi",
+            "kotlin.experimental.ExperimentalTypeInference",
+        )
+    }
+}
 
-dependencies.addAll()
+androidComponents {
+    onVariants { variant ->
+        variant.outputs.forEach { output ->
+            output.outputFileName.set("[$appVersionCode][$appVersionName]DowodyRejestracyjne.apk")
+        }
+    }
+}
+
+dependencies {
+    implementation(libs.androidx.annotation)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.preference.ktx)
+    implementation(libs.androidx.recyclerview)
+
+    implementation(libs.bundles.lifecycle)
+    implementation(libs.bundles.camerax)
+
+    implementation(libs.bundles.room)
+    ksp(libs.androidx.room.compiler)
+
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.core)
+
+    implementation(libs.google.material)
+    implementation(libs.mlkit.barcode.scanning)
+    implementation(libs.timber)
+}
