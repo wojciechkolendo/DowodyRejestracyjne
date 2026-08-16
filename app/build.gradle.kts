@@ -2,10 +2,13 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.kotlin.parcelize)
+    // Navigation 3 persists its back stack by serialising the NavKeys.
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.firebase.crashlytics)
 }
 
 val appVersionCode = 3
@@ -25,13 +28,14 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
 
     buildFeatures {
-        dataBinding = true
+        compose = true
         buildConfig = true
     }
 
@@ -62,16 +66,17 @@ androidComponents {
 }
 
 dependencies {
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.bundles.compose)
+    implementation(libs.bundles.navigation3)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+
     implementation(libs.androidx.annotation)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.preference.ktx)
-    implementation(libs.androidx.recyclerview)
 
     implementation(libs.bundles.lifecycle)
     implementation(libs.bundles.camerax)
+    implementation(libs.androidx.camera.compose)
 
     implementation(libs.bundles.room)
     ksp(libs.androidx.room.compiler)
@@ -79,7 +84,13 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.coroutines.core)
 
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
+
     implementation(libs.google.material)
     implementation(libs.mlkit.barcode.scanning)
     implementation(libs.timber)
+
+    testImplementation(libs.junit)
 }

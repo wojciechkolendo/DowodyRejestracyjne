@@ -5,7 +5,6 @@ package wkolendo.dowodyrejestracyjne.utils
 import android.app.Activity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import androidx.recyclerview.widget.RecyclerView
 
 /**
  * Hides the soft keyboard
@@ -24,6 +23,3 @@ fun View.showSoftKeyboard(flags: Int = 0) {
     requestFocus()
     inputMethodManager.showSoftInput(this, flags)
 }
-
-inline fun <reified T : RecyclerView.Adapter<*>> RecyclerView.getOrInstantiateAdapter(newInstance: (() -> T) = { T::class.java.newInstance() }): T =
-    (adapter as? T) ?: newInstance().apply { adapter = this }

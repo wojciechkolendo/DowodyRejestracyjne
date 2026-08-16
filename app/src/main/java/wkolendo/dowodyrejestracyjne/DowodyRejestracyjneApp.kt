@@ -2,8 +2,8 @@ package wkolendo.dowodyrejestracyjne
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import timber.log.Timber
+import wkolendo.dowodyrejestracyjne.utils.CrashlyticsTree
 
 class DowodyRejestracyjneApp: Application() {
 
@@ -20,7 +20,7 @@ class DowodyRejestracyjneApp: Application() {
 	}
 
 	private fun initLoggers() {
-		if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
+		Timber.plant(if (BuildConfig.DEBUG) Timber.DebugTree() else CrashlyticsTree())
 	}
 }
 

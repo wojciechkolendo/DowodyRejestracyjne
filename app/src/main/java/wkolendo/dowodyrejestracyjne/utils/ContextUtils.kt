@@ -4,7 +4,6 @@ package wkolendo.dowodyrejestracyjne.utils
 
 import android.app.Activity
 import android.content.Context
-import android.content.DialogInterface
 import android.content.res.ColorStateList
 import android.content.res.Resources
 import android.graphics.drawable.Drawable
@@ -14,12 +13,8 @@ import android.os.Vibrator
 import android.util.TypedValue
 import android.widget.Toast
 import androidx.annotation.*
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import com.google.android.material.snackbar.Snackbar
 import wkolendo.dowodyrejestracyjne.appContext
-import wkolendo.dowodyrejestracyjne.utils.ui.BindingActivity
 
 private const val VIBRATION_TAP: Long = 200
 
@@ -30,41 +25,9 @@ private const val VIBRATION_ERROR: Long = 1500
  */
 fun Activity?.hideSoftKeyboard() = this?.currentFocus?.hideSoftKeyboard()
 
-fun Fragment.setToolbarTitle(@StringRes title: Int) = bindingActivity?.setToolbarTitle(title)
-
-fun Fragment.setToolbarTitle(title: CharSequence?) = bindingActivity?.setToolbarTitle(title)
-
-fun Fragment.showSnackMessage(@StringRes msg: Int, duration: Int = Snackbar.LENGTH_LONG) = bindingActivity?.showSnackMessage(msg, duration)
-
-fun Fragment.showSnackMessage(msg: CharSequence, duration: Int = Snackbar.LENGTH_LONG) = bindingActivity?.showSnackMessage(msg, duration)
-
-fun Fragment.showToastMessage(@StringRes msg: Int, duration: Int = Toast.LENGTH_SHORT) = context?.showToastMessage(msg, duration)
-
-fun Fragment.showToastMessage(msg: CharSequence, duration: Int = Toast.LENGTH_SHORT) = context?.showToastMessage(msg, duration)
-
-fun Fragment.showDialogMessage(@StringRes msg: Int, @StringRes title: Int = 0, @StringRes actionLabel: Int? = null, action: (() -> Unit)? = null) =
-    context?.showDialogMessage(msg, title, actionLabel, action)
-
-fun Fragment.showDialogMessage(msg: CharSequence, title: CharSequence? = null, actionLabel: CharSequence? = null, action: (() -> Unit)? = null) =
-    context?.showDialogMessage(msg, title, actionLabel, action)
-
-fun BindingActivity<*>.showSnackMessage(@StringRes msg: Int, duration: Int = Snackbar.LENGTH_LONG) = showSnackMessage(msg.getText(), duration)
-
-fun BindingActivity<*>.showSnackMessage(msg: CharSequence, duration: Int = Snackbar.LENGTH_LONG) = Snackbar.make(getRootView(), msg, duration).apply { show() }
-
 fun Context.showToastMessage(@StringRes msg: Int, duration: Int = Toast.LENGTH_SHORT): Toast = showToastMessage(msg.getText(), duration)
 
 fun Context.showToastMessage(msg: CharSequence, duration: Int = Toast.LENGTH_SHORT): Toast = Toast.makeText(this, msg, duration).apply { show() }
-
-fun Context.showDialogMessage(@StringRes msg: Int, @StringRes title: Int = 0, @StringRes actionLabel: Int? = null, action: (() -> Unit)? = null): AlertDialog =
-    showDialogMessage(msg.getText(), title.getTextOrNull(), actionLabel.getTextOrNull(), action)
-
-fun Context.showDialogMessage(msg: CharSequence, title: CharSequence? = null, actionLabel: CharSequence? = null, action: (() -> Unit)? = null): AlertDialog =
-    AlertDialog.Builder(this)
-        .setTitle(title)
-        .setMessage(msg)
-        .setPositiveButton(actionLabel ?: android.R.string.ok.getText(), action?.let { DialogInterface.OnClickListener { _, _ -> action() } })
-        .show()
 
 @get:Px
 val Float?.dp: Int
@@ -133,11 +96,6 @@ fun @receiver:DrawableRes Int?.getDrawable(context: Context = appContext): Drawa
 fun @receiver:DrawableRes Int?.getDrawableOrNull(context: Context = appContext): Drawable? =
     this?.takeIf { it != 0 }?.runCatching { getDrawable(context) }?.getOrNull()
 
-fun Context.getStringByName(name: String, vararg params: Any): String? {
-    val resId = resources.getIdentifier(name, "string", packageName).takeIf { it != 0 } ?: return null
-    return if (params.isNullOrEmpty()) getString(resId) else getString(resId, *params)
-}
-
 fun Context.vibrateTap() = vibrate(VIBRATION_TAP)
 
 fun Context.vibrateError() = vibrate(VIBRATION_ERROR)
@@ -150,4 +108,3 @@ fun Context.vibrate(millis: Long) {
     }
 }
 
-private val Fragment.bindingActivity get() = activity as? BindingActivity<*>

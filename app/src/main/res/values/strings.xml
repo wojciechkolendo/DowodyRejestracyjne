@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Skaner DR</string>
+    <string name="action_back">Wstecz</string>
 
     <string name="camera_scanner_error">Błąd podczas dekodowania kodu - nieprawidłowy kod.</string>
     <string name="camera_scanner_message">Kod musi być dobrze i ostro widoczny z bliskiej odległości</string>
