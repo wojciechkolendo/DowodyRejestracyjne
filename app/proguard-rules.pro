@@ -1,21 +1,17 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.kts.
+# R8 rules for the release build.
 #
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+# Add rules here only with a reason. Every entry below was added because the minified build actually
+# broke at runtime, not pre-emptively.
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
-
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
-
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+# ML Kit finds its components at startup by reading registrar class names out of the merged manifest
+# and instantiating them reflectively. R8 sees no callers of those constructors and removes them,
+# which leaves the component registry empty; BarcodeScanning.getClient() then throws an NPE the
+# moment the scanner opens.
+#
+# Symptom without this rule:
+#   W ComponentDiscovery: java.lang.NoSuchMethodException: ...CommonComponentRegistrar.<init> []
+#   E AndroidRuntime: java.lang.NullPointerException
+#       at com.google.mlkit.vision.barcode.BarcodeScanning.getClient(...)
+-keep class * implements com.google.firebase.components.ComponentRegistrar {
+    <init>();
+}

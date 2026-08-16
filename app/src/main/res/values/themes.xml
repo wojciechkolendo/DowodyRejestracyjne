@@ -1,34 +1,12 @@
 <resources>
 
-    <style name="Theme.DR" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryContainer">@color/primaryContainer</item>
-        <item name="colorOnPrimary">@color/onPrimary</item>
-        <item name="colorSecondary">@color/secondary</item>
-        <item name="colorSecondaryContainer">@color/secondaryContainer</item>
-        <item name="colorOnSecondary">@color/onSecondary</item>
-        <item name="colorControlHighlight">@color/ripple</item>
+    <!--
+        Window theme only. It paints the window in the moments before Compose draws its first frame,
+        which is why it still has to exist in a fully Compose app.
 
-        <item name="toolbarStyle">@style/Widget.DR.Toolbar</item>
-
-        <item name="alertDialogTheme">@style/ThemeOverlay.DR.AlertDialog</item>
-        <item name="materialAlertDialogTheme">@style/ThemeOverlay.DR.AlertDialog</item>
-        <item name="materialCardViewStyle">@style/Widget.DR.CardView.Elevated</item>
-        <item name="materialButtonStyle">@style/Widget.DR.Button</item>
-        <item name="radioButtonStyle">@style/Widget.DR.RadioButton</item>
-        <item name="textInputStyle">@style/Widget.DR.TextInputLayout.OutlinedBox.Dense.Details</item>
-        <item name="floatingActionButtonStyle">@style/Widget.DR.FloatingActionButton</item>
-        <item name="extendedFloatingActionButtonStyle">@style/Widget.DR.ExtendedFloatingActionButton</item>
-        <item name="switchStyle">@style/Widget.DR.CompoundButton.Switch</item>
-
-        <item name="dialogCornerRadius">@dimen/dialogCornerRadius</item>
-        <item name="fontFamily">@font/open_sans</item>
-        <item name="android:actionOverflowButtonStyle">@style/Widget.DR.OverFlow</item>
-    </style>
-
-    <style name="Theme.DR.Base">
-        <item name="android:statusBarColor">@color/primary</item>
-        <item name="android:navigationBarColor">@color/primary</item>
-    </style>
+        Everything else the app looks like lives in ui/theme/Theme.kt. System bar colours are set by
+        enableEdgeToEdge() in MainActivity, so the per-API-level variants of this file are gone.
+    -->
+    <style name="Theme.DR" parent="Theme.Material3.DayNight.NoActionBar" />
 
 </resources>
