@@ -183,7 +183,7 @@ private fun MessageDialog(@StringRes messageRes: Int, onDismiss: () -> Unit) {
         onDismissRequest = onDismiss,
         text = { Text(stringResource(messageRes)) },
         confirmButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(android.R.string.ok)) }
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_ok)) }
         },
     )
 }

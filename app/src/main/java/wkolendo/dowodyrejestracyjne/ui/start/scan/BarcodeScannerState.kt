@@ -3,10 +3,13 @@ package wkolendo.dowodyrejestracyjne.ui.start.scan
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Size
+import androidx.camera.core.Camera
+import androidx.camera.core.CameraControl
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
+import androidx.camera.core.TorchState
 import androidx.camera.core.SurfaceRequest
 import androidx.camera.core.resolutionselector.ResolutionSelector
 import androidx.camera.core.resolutionselector.ResolutionStrategy
@@ -18,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.Observer
 import androidx.lifecycle.LifecycleOwner
 import com.google.mlkit.vision.barcode.BarcodeScanner
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
@@ -46,6 +50,24 @@ class BarcodeScannerState(private val context: Context) {
     /** Set once the camera has a frame producer ready; the viewfinder renders nothing until then. */
     var surfaceRequest by mutableStateOf<SurfaceRequest?>(null)
         private set
+
+    /** False on devices with no torch — tablets, emulators — so the button can be disabled. */
+    var hasFlashUnit by mutableStateOf(false)
+        private set
+
+    /**
+     * Mirrors CameraX's own torch state rather than a flag of our own. The system can turn the
+     * torch off by itself (overheating, another app taking the camera) and a private boolean would
+     * then disagree with reality, leaving the icon lying about it.
+     */
+    var isTorchOn by mutableStateOf(false)
+        private set
+
+    private var cameraControl: CameraControl? = null
+
+    fun setTorchEnabled(enabled: Boolean) {
+        runCatching { cameraControl?.enableTorch(enabled) }.onFailure { logError(it) }
+    }
 
     /**
      * Binds the camera and reports the first Aztec code found. Never returns normally — cancel the
@@ -98,18 +120,32 @@ class BarcodeScannerState(private val context: Context) {
                 }
             }
 
+        var camera: Camera? = null
+        val torchObserver = Observer<Int> { state -> isTorchOn = state == TorchState.ON }
+
         try {
             cameraProvider.unbindAll()
-            runCatching {
+            camera = runCatching {
                 cameraProvider.bindToLifecycle(
                     lifecycleOwner,
                     CameraSelector.DEFAULT_BACK_CAMERA,
                     imageAnalysis,
                     preview,
                 )
-            }.onFailure { logError(it) }
+            }.onFailure { logError(it) }.getOrNull()
+
+            camera?.also {
+                cameraControl = it.cameraControl
+                hasFlashUnit = it.cameraInfo.hasFlashUnit()
+                it.cameraInfo.torchState.observeForever(torchObserver)
+            }
+
             awaitCancellation()
         } finally {
+            camera?.cameraInfo?.torchState?.removeObserver(torchObserver)
+            cameraControl = null
+            hasFlashUnit = false
+            isTorchOn = false
             cameraProvider.unbindAll()
             imageAnalysis.clearAnalyzer()
             scanner.close()

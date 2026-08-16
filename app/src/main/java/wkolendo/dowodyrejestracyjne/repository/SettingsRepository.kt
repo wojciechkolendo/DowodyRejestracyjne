@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import wkolendo.dowodyrejestracyjne.appContext
+import wkolendo.dowodyrejestracyjne.models.ThemeMode
 
 /**
  * User settings, kept behind a repository so callers do not reach for SharedPreferences directly.
@@ -17,6 +18,7 @@ import wkolendo.dowodyrejestracyjne.appContext
 object SettingsRepository {
 
     private const val KEY_SAVE_SCANS = "settings_save_scans"
+    private const val KEY_THEME_MODE = "settings_theme_mode"
 
     /**
      * Deliberately the same file name PreferenceManager.getDefaultSharedPreferences() used, so the
@@ -33,4 +35,18 @@ object SettingsRepository {
         preferences.edit { putBoolean(KEY_SAVE_SCANS, enabled) }
         _saveScans.value = enabled
     }
+
+    private val _themeMode = MutableStateFlow(readThemeMode())
+    val themeMode: StateFlow<ThemeMode> = _themeMode.asStateFlow()
+
+    fun setThemeMode(mode: ThemeMode) {
+        preferences.edit { putString(KEY_THEME_MODE, mode.name) }
+        _themeMode.value = mode
+    }
+
+    /** Falls back to following the system for a missing value or one this version no longer knows. */
+    private fun readThemeMode(): ThemeMode =
+        preferences.getString(KEY_THEME_MODE, null)
+            ?.let { stored -> ThemeMode.entries.firstOrNull { it.name == stored } }
+            ?: ThemeMode.SYSTEM
 }

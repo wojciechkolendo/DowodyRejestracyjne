@@ -4,14 +4,20 @@ import androidx.camera.compose.CameraXViewfinder
 import androidx.camera.core.SurfaceRequest
 import androidx.camera.viewfinder.core.ImplementationMode
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -22,6 +28,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -58,6 +65,9 @@ fun ScannerDialog(
 
     ScannerDialogContent(
         surfaceRequest = scannerState.surfaceRequest,
+        hasFlashUnit = scannerState.hasFlashUnit,
+        isTorchOn = scannerState.isTorchOn,
+        onTorchChange = scannerState::setTorchEnabled,
         onDismissRequest = onDismissRequest,
     )
 }
@@ -65,6 +75,9 @@ fun ScannerDialog(
 @Composable
 private fun ScannerDialogContent(
     surfaceRequest: SurfaceRequest?,
+    hasFlashUnit: Boolean,
+    isTorchOn: Boolean,
+    onTorchChange: (Boolean) -> Unit,
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -102,16 +115,55 @@ private fun ScannerDialogContent(
                 )
 
                 Spacer(Modifier.height(8.dp))
-                TextButton(
-                    onClick = onDismissRequest,
+                Row(
                     modifier = Modifier
-                        .align(Alignment.End)
+                        .fillMaxWidth()
                         .padding(horizontal = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Text(stringResource(android.R.string.cancel))
+                    TorchButton(
+                        hasFlashUnit = hasFlashUnit,
+                        isTorchOn = isTorchOn,
+                        onTorchChange = onTorchChange,
+                    )
+                    TextButton(onClick = onDismissRequest) {
+                        Text(stringResource(R.string.action_cancel))
+                    }
                 }
             }
         }
+    }
+}
+
+/**
+ * Sits in the button bar rather than over the preview: it stays within thumb reach, needs no scrim
+ * to stay legible against arbitrary camera output, and never covers part of the frame.
+ */
+@Composable
+private fun TorchButton(
+    hasFlashUnit: Boolean,
+    isTorchOn: Boolean,
+    onTorchChange: (Boolean) -> Unit,
+) {
+    IconToggleButton(
+        checked = isTorchOn,
+        onCheckedChange = onTorchChange,
+        enabled = hasFlashUnit,
+        colors = IconButtonDefaults.iconToggleButtonColors(
+            contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+            checkedContentColor = MaterialTheme.colorScheme.primary,
+        ),
+    ) {
+        Icon(
+            // The bolt glyph is narrower than the square icons, so it is sized explicitly to keep
+            // the same optical weight as the rest.
+            painter = painterResource(
+                if (isTorchOn) R.drawable.ic_bolt_lightning_filled_24dp else R.drawable.ic_bolt_lightning_24dp
+            ),
+            contentDescription = stringResource(R.string.scanner_torch),
+            modifier = Modifier.size(24.dp),
+        )
     }
 }
 
@@ -140,6 +192,12 @@ private fun ScannerDialogContentPreview() {
     // A null surface request is exactly what the screen shows before the camera delivers frames,
     // which is why splitting the content out makes it previewable without a device.
     DRTheme(dynamicColor = false) {
-        ScannerDialogContent(surfaceRequest = null, onDismissRequest = {})
+        ScannerDialogContent(
+            surfaceRequest = null,
+            hasFlashUnit = true,
+            isTorchOn = false,
+            onTorchChange = {},
+            onDismissRequest = {},
+        )
     }
 }

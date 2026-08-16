@@ -4,7 +4,10 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -41,40 +44,47 @@ fun DRApp(modifier: Modifier = Modifier) {
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
-    NavDisplay(
-        backStack = backStack,
-        modifier = modifier,
-        onBack = { backStack.removeLastOrNull() },
-        entryProvider = entryProvider<NavKey> {
-            entry<StartKey> {
-                StartScreen(
-                    onOpenDetails = { certificate -> backStack.add(DetailsKey(certificate)) },
-                    onOpenSettings = { backStack.add(SettingsKey) },
-                )
-            }
-
-            entry<DetailsKey> { key ->
-                val copiedMessage = stringResource(R.string.details_copy_success_message)
-                fun copy(text: String) {
-                    context.copyToClipboard(text)
-                    scope.launch { snackbarHostState.showSnackbar(copiedMessage) }
+    // MaterialTheme only supplies values, it paints nothing. Without an opaque layer here the
+    // crossfade between destinations has both screens partly transparent at once and the window
+    // shows through, which reads as a flash of the wrong colour.
+    Surface(
+        modifier = modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background,
+    ) {
+        NavDisplay(
+            backStack = backStack,
+            onBack = { backStack.removeLastOrNull() },
+            entryProvider = entryProvider<NavKey> {
+                entry<StartKey> {
+                    StartScreen(
+                        onOpenDetails = { certificate -> backStack.add(DetailsKey(certificate)) },
+                        onOpenSettings = { backStack.add(SettingsKey) },
+                    )
                 }
 
-                DetailsScreen(
-                    certificate = key.certificate,
-                    onBack = { backStack.removeLastOrNull() },
-                    onCopy = { copy(key.certificate.toShareableText(context.resources)) },
-                    onShare = { context.shareCertificate(key.certificate) },
-                    onCopyValue = ::copy,
-                    snackbarHostState = snackbarHostState,
-                )
-            }
+                entry<DetailsKey> { key ->
+                    val copiedMessage = stringResource(R.string.details_copy_success_message)
+                    fun copy(text: String) {
+                        context.copyToClipboard(text)
+                        scope.launch { snackbarHostState.showSnackbar(copiedMessage) }
+                    }
 
-            entry<SettingsKey> {
-                SettingsScreen(onBack = { backStack.removeLastOrNull() })
-            }
-        },
-    )
+                    DetailsScreen(
+                        certificate = key.certificate,
+                        onBack = { backStack.removeLastOrNull() },
+                        onCopy = { copy(key.certificate.toShareableText(context.resources)) },
+                        onShare = { context.shareCertificate(key.certificate) },
+                        onCopyValue = ::copy,
+                        snackbarHostState = snackbarHostState,
+                    )
+                }
+
+                entry<SettingsKey> {
+                    SettingsScreen(onBack = { backStack.removeLastOrNull() })
+                }
+            },
+        )
+    }
 }
 
 private fun Context.copyToClipboard(text: String) {

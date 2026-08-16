@@ -1,7 +1,10 @@
 package wkolendo.dowodyrejestracyjne.ui.settings
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -14,6 +17,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -25,6 +29,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -33,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import wkolendo.dowodyrejestracyjne.BuildConfig
 import wkolendo.dowodyrejestracyjne.R
+import wkolendo.dowodyrejestracyjne.models.ThemeMode
 import wkolendo.dowodyrejestracyjne.repository.CertificateRepository
 import wkolendo.dowodyrejestracyjne.repository.SettingsRepository
 import wkolendo.dowodyrejestracyjne.ui.theme.DRTheme
@@ -54,9 +60,12 @@ fun SettingsScreen(
 
     val context = LocalContext.current
     val saveScans by SettingsRepository.saveScans.collectAsStateWithLifecycle()
+    val themeMode by SettingsRepository.themeMode.collectAsStateWithLifecycle()
 
     SettingsContent(
         saveScans = saveScans,
+        themeMode = themeMode,
+        onThemeModeChange = SettingsRepository::setThemeMode,
         appVersion = BuildConfig.VERSION_NAME,
         onBack = onBack,
         onSaveScansChange = SettingsRepository::setSaveScans,
@@ -75,6 +84,8 @@ fun SettingsScreen(
 @Composable
 fun SettingsContent(
     saveScans: Boolean,
+    themeMode: ThemeMode,
+    onThemeModeChange: (ThemeMode) -> Unit,
     onBack: () -> Unit,
     appVersion: String,
     onSaveScansChange: (Boolean) -> Unit,
@@ -103,6 +114,8 @@ fun SettingsContent(
     ) { contentPadding ->
         SettingsList(
             saveScans = saveScans,
+            themeMode = themeMode,
+            onThemeModeChange = onThemeModeChange,
             appVersion = appVersion,
             onSaveScansChange = onSaveScansChange,
             onClearHistoryClick = { showClearHistoryDialog = true },
@@ -127,6 +140,8 @@ fun SettingsContent(
 @Composable
 private fun SettingsList(
     saveScans: Boolean,
+    themeMode: ThemeMode,
+    onThemeModeChange: (ThemeMode) -> Unit,
     appVersion: String,
     onSaveScansChange: (Boolean) -> Unit,
     onClearHistoryClick: () -> Unit,
@@ -157,6 +172,10 @@ private fun SettingsList(
         )
 
         HorizontalDivider()
+        CategoryHeader(stringResource(R.string.settings_appearance))
+        ThemeModeGroup(selected = themeMode, onSelect = onThemeModeChange)
+
+        HorizontalDivider()
         CategoryHeader(stringResource(R.string.settings_about))
 
         SettingsItem(
@@ -173,6 +192,50 @@ private fun SettingsList(
             onClick = onVersionClick,
         )
     }
+}
+
+/**
+ * Radio group for the theme. The whole row is the touch target and carries the RadioButton role, so
+ * the button itself takes no click of its own — that is the accessibility pattern for these lists.
+ */
+@Composable
+private fun ThemeModeGroup(
+    selected: ThemeMode,
+    onSelect: (ThemeMode) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Column(modifier = modifier.selectableGroup()) {
+        ThemeModeItem(R.drawable.ic_circle_half_stroke_24dp, R.string.settings_theme_system, ThemeMode.SYSTEM, selected, onSelect)
+        ThemeModeItem(R.drawable.ic_sun_24dp, R.string.settings_theme_light, ThemeMode.LIGHT, selected, onSelect)
+        ThemeModeItem(R.drawable.ic_moon_24dp, R.string.settings_theme_dark, ThemeMode.DARK, selected, onSelect)
+    }
+}
+
+@Composable
+private fun ThemeModeItem(
+    @DrawableRes icon: Int,
+    @StringRes title: Int,
+    mode: ThemeMode,
+    selected: ThemeMode,
+    onSelect: (ThemeMode) -> Unit,
+) {
+    val isSelected = mode == selected
+    ListItem(
+        headlineContent = { Text(stringResource(title)) },
+        leadingContent = {
+            Icon(
+                painter = painterResource(icon),
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        },
+        trailingContent = { RadioButton(selected = isSelected, onClick = null) },
+        modifier = Modifier.selectable(
+            selected = isSelected,
+            role = Role.RadioButton,
+            onClick = { onSelect(mode) },
+        ),
+    )
 }
 
 @Composable
@@ -219,7 +282,7 @@ private fun ClearHistoryDialog(onConfirm: () -> Unit, onDismiss: () -> Unit) {
             TextButton(onClick = onConfirm) { Text(stringResource(R.string.settings_clear_history_confirm)) }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(android.R.string.cancel)) }
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) }
         },
     )
 }
@@ -230,6 +293,8 @@ private fun SettingsScreenPreview() {
     DRTheme(dynamicColor = false) {
         SettingsContent(
             saveScans = true,
+            themeMode = ThemeMode.SYSTEM,
+            onThemeModeChange = {},
             appVersion = "1.1.0",
             onBack = {},
             onSaveScansChange = {},
@@ -246,6 +311,8 @@ private fun SettingsScreenDarkPreview() {
     DRTheme(darkTheme = true, dynamicColor = false) {
         SettingsContent(
             saveScans = false,
+            themeMode = ThemeMode.DARK,
+            onThemeModeChange = {},
             appVersion = "1.1.0",
             onBack = {},
             onSaveScansChange = {},

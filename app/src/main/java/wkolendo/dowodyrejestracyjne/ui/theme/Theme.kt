@@ -9,6 +9,7 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import wkolendo.dowodyrejestracyjne.models.ThemeMode
 
 private val LightColorScheme = lightColorScheme(
     primary = LightPrimary,
@@ -37,6 +38,14 @@ private val DarkColorScheme = darkColorScheme(
     onSurface = DarkOnSurface,
     onSurfaceVariant = DarkOnSurfaceVariant,
 )
+
+/** Resolves the user's choice into the boolean [DRTheme] and the system bars need. */
+@Composable
+fun ThemeMode.isDark(): Boolean = when (this) {
+    ThemeMode.SYSTEM -> isSystemInDarkTheme()
+    ThemeMode.LIGHT -> false
+    ThemeMode.DARK -> true
+}
 
 /**
  * Theme for the whole app.
