@@ -11,7 +11,7 @@ plugins {
     alias(libs.plugins.firebase.crashlytics)
 }
 
-val appVersionCode = 3
+val appVersionCode = 4
 val appVersionName = "1.1.0"
 
 android {
